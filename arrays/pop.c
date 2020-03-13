@@ -36,11 +36,23 @@ int main()
   for (i = pos; i < n - 1; i++)
   {
     arr[i] = arr[i + 1];
+
+    // below is to get rid of last element after all are moved
+    if (i != n - 2)
+    {
+      continue;
+    }
+    else
+    {
+      arr[i + 1] = 0;
+    }
   }
 
   // print the new array
+  printf("\033[1m\033[31m"); // print in red bold
   printf("the new array is: ");
-  for (i =0; i < n; i++)
+  printf("\033[0m");
+  for (i =0; i <= n; i++)
   {
     printf("%d ", arr[i]);
   }
