@@ -20,28 +20,55 @@ void printlist(node_t *head)
   printf("\n");
 }
 
+node_t *create_new_node(int value)
+{
+  node_t *result = malloc(sizeof(node_t));
+  result->value = value;
+  result->next = NULL;
+  return result;
+}
+
+node_t *insert_at_head(node_t **head, node_t *node_to_insert)
+{
+  node_to_insert->next = *head;
+  *head = node_to_insert;
+  return node_to_insert;
+}
+
+void insert_after_node(node_t *node_to_insert_after, node_t *newnode)
+{
+  newnode->next = node_to_insert_after->next;
+  node_to_insert_after->next = newnode;
+}
+
+node_t *find_node(node_t *head, int value)
+{
+  node_t *tmp = head;
+  while (tmp != NULL)
+  {
+    if (tmp->value == value) {
+      return tmp;
+    }
+    tmp = tmp->next;
+  }
+  return NULL;
+}
+
 int main()
 {
-  node_t n1, n2, n3;
-  node_t *head;
+  node_t *head = NULL;
+  node_t *tmp;
 
-  n1.value = 45;
-  n2.value = 8;
-  n3.value = 32;
+  for (int i = 0; i < 25; i++)
+  {
+    tmp = create_new_node(i);
+    head = insert_at_head(&head, tmp);
+  }
 
-  // link them up
-  head = &n1; // the head points to n3 (here we're making that the head of the list)
-  n3.next = NULL;
-  n2.next = &n3;
-  n1.next = &n2; // so we know when to stop
+  tmp = find_node(head, 13);
+  printf("found node with value %d\n", tmp->value);
 
-  node_t n4;
-  n4.value = 13;
-  n4.next = &n3;
-  n2.next = &n4;
-
-  head = head->next;
-
+  insert_after_node(tmp, create_new_node(75));
 
   printlist(head);
 
