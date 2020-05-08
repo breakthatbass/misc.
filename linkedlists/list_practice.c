@@ -24,9 +24,11 @@ void printlist(node_t *head)
 node_t *create_new_node(char *card)
 {
   node_t *result = malloc(sizeof(node_t));
-  result->card = card;
-  result->next = NULL;
-
+  if (result != NULL)
+  {
+    result->card = card;
+    result->next = NULL;
+  }
   return result;
 }
 
@@ -56,17 +58,20 @@ node_t *add_node(node_t **head, node_t *new_node)
 
 int main(void)
 {
-  char *card_list[5] = {"counterspell", "black lotus", "giant growth", "mountain", "forest"};
-  int len = sizeof(card_list)/sizeof(card_list[0]);
+  char *card_list[] =
+  {
+    "counterspell", "black lotus", "giant growth", "mountain", "forest"
+  };
+  size_t len = sizeof(card_list)/sizeof(card_list[0]);
 
   node_t *head = NULL;
-  node_t *temporary;
+  node_t *node;
 
 
-  for (int i = 0; i < len; i++)
+  for (size_t i = 0; i < len; i++)
   {
-    temporary = create_new_node(card_list[i]);
-    head = add_node(&head, temporary);
+    node = create_new_node(card_list[i]);
+    add_node(&head, node);
 
   }
 
