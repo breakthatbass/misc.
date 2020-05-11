@@ -1,5 +1,6 @@
 from termcolor import colored
 
+
 def bubble_sort(array):
     n = len(array)
 
