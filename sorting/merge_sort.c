@@ -3,7 +3,7 @@
 // doesn't work.
 // needs to be redone
 
-int merge(int arr[], int start, int mid, int end)
+void merge(int arr[], int start, int mid, int end)
 {
   int result[end-start];
 
