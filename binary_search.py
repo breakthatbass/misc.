@@ -1,6 +1,6 @@
 '''
   "Binary search first compares the input value 'x' to the middle element
-  of the array 'x'. if 'x' is less than the middle value, searching focuses
+  of the array. if 'x' is less than the middle value, searching focuses
   on the lower half of the array, otherwise it focuses on the upper half.
 
   In either case, the next step is to compare 'x' to the middle element of
