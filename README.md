@@ -49,7 +49,7 @@ A collection of basic data structures and algorithms in Python and C.
 5. ArrayLists (TODO)
 6. Hash table (TODO)
 
-### [Misc.](https://github.com/breakthatbass/data_structures_and_algorithms/tree/master/misc.)
+## Misc.
 
 #### C:
 1. [Reverse](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/misc./reverse.c)
