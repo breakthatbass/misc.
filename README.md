@@ -22,7 +22,7 @@ A collection of basic data structures and algorithms in Python and C.
 ### [Searching](https://github.com/breakthatbass/data_structures_and_algorithms/tree/master/searching)
 
 #### Python:
-1. Binary search (TODO)
+1. [Binary search](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/searching/binary_search.py)
 2. Breadth first search (TODO)
 3. Depth first search (TODO)
 
