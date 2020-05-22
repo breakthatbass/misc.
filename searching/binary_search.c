@@ -1,6 +1,18 @@
+/*
+  "Binary search first compares the input value 'x' to the middle element
+  of the array 'x'. if 'x' is less than the middle value, searching focuses
+  on the lower half of the array, otherwise it focuses on the upper half.
+
+  In either case, the next step is to compare 'x' to the middle element of
+  the selected half. This process of dividing the range in two continues
+  until the value is found or the range is empty."
+
+  Explanation above from page 57 of 'The C Programming Language' by
+  Brian Kernighan and Dennis Ritchie.
+*/
 #include <stdio.h>
 
-int binsearch(int x, int v[], int n) // n is v[] length
+int binsearch(int x, int v[], int n) // n is length of v[]
 {
   int low, high, mid;
 
