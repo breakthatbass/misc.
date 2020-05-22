@@ -9,13 +9,15 @@ A collection of basic data structures and algorithms in Python and C.
 1. [Bubble sort](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/sorting/bubble_sort.py)
 2. [Insertion sort](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/sorting/insertion_sort.c)
 3. [Merge sort](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/sorting/merge_sort.py)
-4. Quick sort (TODO)
+4. Shell sort (TODO)
+5. Quick sort (TODO)
 
 #### C:
 1. [Bubble sort](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/sorting/bubble_sort.c)
 2. [Insertion sort](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/sorting/insertion_sort.c)
 3. [Merge sort](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/sorting/merge_sort.c) --> buggy 🦟🦟🦟
-4. Quick sort (TODO)
+4. [Shell sort](https://github.com/breakthatbass/data_structures_and_algorithms/blob/master/sorting/shellsort.c)
+5. Quick sort (TODO)
 
 ### [Searching](https://github.com/breakthatbass/data_structures_and_algorithms/tree/master/searching)
 
