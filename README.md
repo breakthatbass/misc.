@@ -1,6 +1,6 @@
 # Data Structures and Algorithms
 
-A collection of basic data structures and algorithms in Python and C.
+A collection of basic data structures and algorithms and other cool things I come across in Python and C.
 
 ## Algorithms
 ### [Sorting](https://github.com/breakthatbass/data_structures_and_algorithms/tree/master/sorting)
