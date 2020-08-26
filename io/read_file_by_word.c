@@ -21,7 +21,8 @@ int main(int argc, char **argv)
     }   
     
     // crux of program here
-    // fscanf reads from 'fp', read a full strinf with '%s'
+    // fscanf reads from 'fp', read a full string with '%s'
+    // ('%c' would read by char instead of string)
     // and puts it into the 'word' array which 
     // gets overwritten in each iteration
     while (fscanf(fp, "%s", word) != EOF)
