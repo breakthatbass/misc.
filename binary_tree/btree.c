@@ -21,8 +21,9 @@ typedef struct tnode {     // tree node
 
 #define MAXWORD 50
 
-tnode *addtree(struct tnode *, char *);
-void treeprint(struct tnode *);
+tnode *addtree(tnode *, char *);
+void treeprint(tnode *);
+tnode *search(tnode *, char *);
 
 int main(int argc, char **argv)
 {
@@ -49,6 +50,18 @@ int main(int argc, char **argv)
             root = addtree(root, word);
     treeprint(root);
     fclose(fp);
+
+    // search tree
+    // variables to use for searching the tree
+    char *h = "hello";          // first word in file
+    char *t = "tree";           // mid of file
+    char *not_in = "aloha";     // not in file
+
+    printf("hello: %s\n", search(root, h)->word);
+    printf("tree: %s\n", search(root, t)->word);
+    printf("aloha: %s\n", search(root, not_in)->word);
+
+
     return 0;
 }
 
@@ -61,7 +74,7 @@ tnode *addtree(tnode *p, char *w)
         p = (tnode *)malloc(sizeof(tnode));
         p->word = strdup(w);
         p->left = p->right = NULL; 
-        
+
     // if root p is not NULL, keep going until we find the next place
     } else if ((cond = strcmp(w, p->word)) < 0)  
         p->left = addtree(p->left, w);
@@ -79,4 +92,19 @@ void treeprint(tnode *p)
         printf("%s\n", p->word);
         treeprint(p->right);
     }
+}
+
+// search: search b tree for char w
+tnode *search(tnode *p, char *w)
+{
+    // check first spot
+    if (p != NULL) {
+        if (strcmp(p->word, w) == 0)
+            return p;
+        else if (strcmp(p->word, w) < 0)
+            search(p->left, w);
+        else 
+            search(p->right, w);
+    }
+    return p;
 }
