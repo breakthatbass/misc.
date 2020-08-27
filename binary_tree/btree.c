@@ -51,15 +51,10 @@ int main(int argc, char **argv)
     treeprint(root);
     fclose(fp);
 
-    // search tree
-    // variables to use for searching the tree
-    char *h = "hello";          // first word in file
-    char *t = "tree";           // mid of file
-    char *not_in = "aloha";     // not in file
 
-    printf("hello: %s\n", search(root, h)->word);
-    printf("tree: %s\n", search(root, t)->word);
-    printf("aloha: %s\n", search(root, not_in)->word);
+    printf("hello: %s\n", search(root, "hello")->word);
+    printf("goodbye: %s\n", search(root, "goodbye")->word);
+    printf("aloha: %s\n", search(root, "aloha")->word);
 
 
     return 0;
@@ -72,6 +67,10 @@ tnode *addtree(tnode *p, char *w)
 
     if (p == NULL) {    // if NULL then it found next empty branch
         p = (tnode *)malloc(sizeof(tnode));
+        if (p == NULL) {
+            fprintf(stderr, "error: memory full\n");
+            exit(EXIT_FAILURE);
+        }
         p->word = strdup(w);
         p->left = p->right = NULL; 
 
@@ -97,14 +96,10 @@ void treeprint(tnode *p)
 // search: search b tree for char w
 tnode *search(tnode *p, char *w)
 {
-    // check first spot
-    if (p != NULL) {
-        if (strcmp(p->word, w) == 0)
-            return p;
-        else if (strcmp(p->word, w) < 0)
-            search(p->left, w);
-        else 
-            search(p->right, w);
-    }
-    return p;
+    if (p->word == NULL || strcmp(w, p->word) == 0)
+        return p;
+    else if (strcmp(w, p->word) < 0)
+        return search(p->left, w);
+    else
+        return search(p->right, w);
 }
