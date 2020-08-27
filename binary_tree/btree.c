@@ -51,9 +51,14 @@ int main(int argc, char **argv)
     treeprint(root);
     fclose(fp);
 
+    // search tree
     printf("hello: %s\n", search(root, "hello")->word);
     printf("goodbye: %s\n", search(root, "goodbye")->word);
-    printf("aloha: %s\n", search(root, "aloha")->word);
+
+    // search tree with error checl to prevent seg fault
+    if (search(root, "aloha") == NULL) {
+        printf("Not Found\n");
+    }
 
     return 0;
 }
@@ -94,7 +99,7 @@ void treeprint(tnode *p)
 // search: search binary tree for char w
 tnode *search(tnode *p, char *w)
 {
-    if (p->word == NULL || strcmp(w, p->word) == 0)
+    if (p == NULL || strcmp(w, p->word) == 0)
         return p;
     else if (strcmp(w, p->word) < 0)
         return search(p->left, w);
