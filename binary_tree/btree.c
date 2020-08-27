@@ -23,7 +23,7 @@ typedef struct tnode {     // tree node
 
 tnode *addtree(tnode *, char *);
 void treeprint(tnode *);
-tnode *search(tnode *, char *);
+tnode *search(tnode *, const char *);
 
 int main(int argc, char **argv)
 {
@@ -97,12 +97,16 @@ void treeprint(tnode *p)
 }
 
 // search: search binary tree for char w
-tnode *search(tnode *p, char *w)
+tnode *search(tnode *p, const char *w)
 {
-    if (p == NULL || strcmp(w, p->word) == 0)
-        return p;
-    else if (strcmp(w, p->word) < 0)
-        return search(p->left, w);
-    else
-        return search(p->right, w);
+    while (p != NULL) {
+        int cmp = strcmp(w, p->word);
+        if (cmp < 0)
+            p = p->left;
+        else if (cmp > 0)
+            p = p->right;
+        else
+            return p;
+    }
+    return NULL;
 }
