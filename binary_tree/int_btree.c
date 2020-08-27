@@ -47,12 +47,17 @@ int main(int argc, char **argv)
     root = NULL;
  
     while (fgets(num, MAXLEN, fp)) {
-
         if (isdigit(num[0]))  // make sure it is a number
             root = addtree(root, atoi(num));
     }
+
     treeprint(root);
     fclose(fp);
+
+    if (search(root, 64315) == NULL) 
+        printf("not found\n");
+    else
+        printf("found\n");
     return 0;
 }
 
@@ -86,4 +91,18 @@ void treeprint(tnode *p)
         printf("%d\n", p->num);
         treeprint(p->right);
     }
+}
+
+// search: search binary tree for int n
+tnode *search(tnode *p, int n)
+{
+    while (p != NULL) {
+        if (n < p->num)
+            p = p->left;
+        else if (n > p->num)
+            p = p->right;
+        else
+            return p;
+    }
+    return NULL;
 }
