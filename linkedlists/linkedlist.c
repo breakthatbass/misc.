@@ -2,8 +2,6 @@
  * usage: compile and run with nums.txt as argument
  * nums.txt is in the directory
  * 
- * it doesn't have all error checking.
- * for example, it expects to have a file of only one type.
  * */
 
 #include <stdio.h>
@@ -19,8 +17,9 @@ struct node
 }; 
 typedef struct node node_t;
 
+
 // creat_new_node: creates new node for list.
-node_t *create_new_node(int value)
+static node_t *create_new_node(int value)
 {
     node_t *new_node = malloc(sizeof(node_t));
     new_node->value = value; 
@@ -29,8 +28,9 @@ node_t *create_new_node(int value)
     return new_node;
 }
 
+
 //add_node: append new node on to list
-node_t *add_node(node_t **head, node_t *new_node)
+static node_t *add_node(node_t **head, node_t *new_node)
 {
     if (*head == NULL) {
         new_node->next = *head;
@@ -45,12 +45,16 @@ node_t *add_node(node_t **head, node_t *new_node)
     return *head;
 }
 
-node_t *push(node_t **head, node_t *pushval)
+
+
+static node_t *push(node_t **head, node_t *pushval)
 {
     pushval->next = *head;
     *head = pushval;
     return pushval;
 }
+
+
 
 static void reverse_list(node_t **head)
 {
@@ -70,13 +74,17 @@ static void reverse_list(node_t **head)
     *head = prev;
 }
 
+
+
 static void insert_after(node_t *prev_node, node_t *new_node)
 {
     new_node->next = prev_node->next;
     prev_node->next = new_node;
 }
 
-node_t *find_node(node_t *head, int value)
+
+
+static node_t *find_node(node_t *head, int value)
 {
     node_t *tmp = head;
     while (tmp != NULL) {
@@ -89,7 +97,7 @@ node_t *find_node(node_t *head, int value)
 
 
 // load_file: take a file of nums and load them into list
-node_t *load_file(char *file)
+static node_t *load_file(char *file)
 {
     FILE *fp;
     char buffer[MAXLEN];
@@ -120,6 +128,7 @@ node_t *load_file(char *file)
 }
 
 
+
 static void printlist(node_t *head)
 {
     node_t *tmp = head;
@@ -130,6 +139,8 @@ static void printlist(node_t *head)
         tmp = tmp->next;
     }
 }
+
+
 
 int main(int argc, char **argv)
 {
