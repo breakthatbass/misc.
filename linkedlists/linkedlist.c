@@ -1,122 +1,145 @@
+/** 
+ * usage: compile and run with nums.txt as argument
+ * nums.txt is in the directory
+ * 
+ * it doesn't have all error checking.
+ * for example, it expects to have a file of only one type.
+ * */
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+#define MAXLEN 50
 
 struct node
 {
-  int value;
-  struct node *next;
-};
+    int value;
+    struct node *next;
+}; 
 typedef struct node node_t;
 
-void printlist(node_t *head)
-{
-  node_t *temporary = head;
-
-  while (temporary != NULL)
-  {
-    printf("%d - ", temporary->value);
-    temporary = temporary->next;
-  }
-  printf("\n");
-}
-
+// creat_new_node: creates new node for list.
 node_t *create_new_node(int value)
-// this creates a new node in the linked list
-// adds to end of the list
 {
-  // allocate memory for a new node
-  node_t *result = malloc(sizeof(node_t));
-  // set the value of the node to argument of function
-  result->value = value;
-  // for now, just set it to point to nothing
-  result->next = NULL;
-  return result;
+    node_t *new_node = malloc(sizeof(node_t));
+    new_node->value = value; 
+    new_node->next = NULL;
+
+    return new_node;
 }
 
-node_t *insert_at_head(node_t **head, node_t *node_to_insert)
+//add_node: append new node on to list
+node_t *add_node(node_t **head, node_t *new_node)
 {
-  // have node_to_insert point to the head
-  node_to_insert->next = *head;
-  // now have the head point to the node_to_insert
-  *head = node_to_insert; // having this pointer requires the **head parameter
-  return node_to_insert;
+    if (*head == NULL) {
+        new_node->next = *head;
+        *head = new_node;
+        return new_node;
+    } else {
+        node_t *tmp = *head;
+        while (tmp->next != NULL) 
+            tmp = tmp->next;
+        tmp->next = new_node; 
+    }
+    return *head;
 }
 
-void insert_after_node(node_t *node_to_insert_after, node_t *newnode)
+node_t *push(node_t **head, node_t *pushval)
 {
-  newnode->next = node_to_insert_after->next;
-  node_to_insert_after->next = newnode;
+    pushval->next = *head;
+    *head = pushval;
+    return pushval;
+}
+
+static void reverse_list(node_t **head)
+{
+    node_t *prev = NULL;
+    node_t *current = *head;
+    node_t *next = NULL;
+
+    while (current != NULL) {
+        // store next
+        next = current->next;
+        // reverse current node's pointer
+        current->next = prev;
+        // move pointers one position ahead
+        prev = current;
+        current = next;
+    }
+    *head = prev;
+}
+
+static void insert_after(node_t *prev_node, node_t *new_node)
+{
+    new_node->next = prev_node->next;
+    prev_node->next = new_node;
 }
 
 node_t *find_node(node_t *head, int value)
 {
-  node_t *tmp = head;
-  while (tmp != NULL)
-  {
-    if (tmp->value == value) {
-      return tmp;
+    node_t *tmp = head;
+    while (tmp != NULL) {
+        if (tmp->value == value)
+            return tmp;
+        tmp = tmp->next;
     }
-    tmp = tmp->next;
-  }
-  return NULL;
+    return NULL;
 }
 
-int main()
+
+// load_file: take a file of nums and load them into list
+node_t *load_file(char *file)
 {
+    FILE *fp;
+    char buffer[MAXLEN];
+    node_t *head;
+    node_t *node;
 
-  /* create list through loop and functions *********/
-
-  node_t *head = NULL;
-  node_t *tmp;
-
-  for (int i = 0; i < 25; i++)
-  {
-    tmp = create_new_node(i);
-    head = insert_at_head(&head, tmp);
+    fp = fopen(file, "r");
+    if (fp == NULL) {
+      fprintf(stderr, "Could not open file %s\n", file);
+      exit(EXIT_FAILURE);
   }
 
-  tmp = find_node(head, 13);
-  printf("found node with value %d\n", tmp->value);
+  head = NULL;
+  // take each value from file, load it into a buffer
+  while (fgets(buffer, sizeof(node_t), fp)) {
+      // make sure it's not a text file
+      if (isalpha(buffer[0])) {
+          fprintf(stderr, "error: problem with file\n");
+          exit(EXIT_FAILURE);
+      }
+      // convert value to int, put it in a node
+      node = create_new_node(atoi(buffer));
+      // append node to list
+      push(&head, node);
+  }
+  fclose(fp);
+  return head;
+}
 
-  insert_after_node(tmp, create_new_node(75));
 
-  printlist(head);
+static void printlist(node_t *head)
+{
+    node_t *tmp = head;
 
-// below is commented out so the above code will compile
-// it shows more manual ways to build a linked list
+    while (tmp != NULL)
+    {
+        printf("%d\n", tmp->value);
+        tmp = tmp->next;
+    }
+}
 
-  /* manually create the list *************/
-/*
-  node_t n1, n2, n3; // establish nodes...just three for now
-  node_t *head; // establish the head (starting point of list)
+int main(int argc, char **argv)
+{
+    char *file;
+    
+    file = argv[1];
 
-  // set values for each node
-  n1.value = 45;
-  n2.value = 8;
-  n3.value = 32;
+    node_t *list = load_file(file);
+    reverse_list(&list);
+    printlist(list);
 
-  // link them up
-  // head = &n1; // set the head to point to the address of n1
-  n1.next = &n2; // set node n1 to point to node n2 (next node in list)
-  n2.next = &n3; // n2 to point to n3
-  n3.next = NULL; // set the last element in the list to point to NULL - indicating the end of the list
-
-*/
-  /* create list using the create_new_node function from above...still somewhat manual */
-
-/*
-  node_t *head; // establish starting point
-  node_t *tmp; // create temp var for setting and adding to list
-
-  tmp = create_new_node(32);
-  head = tmp; // set the node created as the beginning of list
-  tmp = create_new_node(8); //add another node
-  tmp = next->head; // make 8 point to head (32)
-  head = tmp; //now set 8 to head
-  tmp = create_new_node(34);
-  tmp = next->head;
-  head = tmp;
-*/
-
-  return 0;
+    return 0;
 }
