@@ -5,10 +5,10 @@ taken from https:..realpythoncom.working-with-files-in-python.#toc
 '''
 
 import os  # for scandir() 
-
+'''
 # read from file and print it's contents
-with open('test.txt', 'r') as f:
-    data = f.read()
+#with open('test.txt', 'r') as f:
+    #data = f.read()
 # printing it doesn't need to be in the loop
 # print(data)
 
@@ -63,7 +63,7 @@ for dirpath, dirnames, files in os.walk('.'):
     for file_name in files:
         #print(file_name)
         pass
-
+'''
 #from pathlib import Path
 import pathlib
 
@@ -71,12 +71,11 @@ def tree(directory):
     '''print directory tree pattern'''
     print(f'+ {directory}')
     for path in sorted(directory.rglob('*')):
-        if path.name.startswith('', 0, 1) == False:
-            depth = len(path.relative_to(directory).parts)
-            spacer = '    ' * depth
-            print(f'{spacer}+ {pathname}')
+        depth = len(path.relative_to(directory).parts)
+        spacer = '    ' * depth
+        print(f'{spacer}+ {path.name}')
 
-#tree(pathlibPathcwd())
+tree(pathlib.Path.cwd())
 
 
 

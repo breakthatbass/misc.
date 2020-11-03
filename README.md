@@ -1,4 +1,5 @@
-# Data Structures and Algorithms
+# Remembrall
+### Things I want to remember
 
-Collection of data structures, algorithms, and other 
+A collection of data structures, algorithms, templates, and other 
 programs I regularly reference or want to come back to. 
