@@ -38,6 +38,23 @@ class LinkedList {
 			}
 		}
 
+		void reverse() {
+			Node *prev = NULL;
+			Node *current = this->head;
+			Node *next = NULL;
+
+			while (current != NULL) {
+				// store next
+				next = current->m_next;
+				// reverse current node's pointer
+				current->m_next = prev;
+				// move pointers one position ahead
+				prev = current;
+				current = next;
+			}
+			this->head = prev;
+		}
+
 
         void print() {
             Node *head = this->head;
@@ -59,10 +76,16 @@ int main()
 	list->push(3);
 	list->push(2);
 	list->push(1);
-
 	list->append(7);
     
     list->print();
+
+	cout << "reverse list" << endl;
+
+	list->reverse();
+	list->print(); 
+
+	delete list;
 
 	return 0;
 }
