@@ -13,7 +13,8 @@ class LinkedList {
         Node *head;
 
         // methods
-        void push(int data) {
+        void push(int data) 
+		{
             Node *node = new Node();
             node->m_data = data;
             node->m_next = this->head;
@@ -22,7 +23,8 @@ class LinkedList {
         }
 
 
-		void append(int data) {
+		void append(int data) 
+		{
 			Node *node = new Node();
 			node->m_data = data;
 
@@ -38,7 +40,8 @@ class LinkedList {
 			}
 		}
 
-		void reverse() {
+		void reverse() 
+		{
 			Node *prev = NULL;
 			Node *current = this->head;
 			Node *next = NULL;
@@ -72,8 +75,34 @@ class LinkedList {
 			}
 		}
 
+		void insert_before(int data, int insert_before)
+		{
+			Node *node = new Node();
+			node->m_data = data;
 
-        void print() {
+			Node *prev = NULL;
+			Node *tmp = this->head;
+
+			// check to see if head node is one to insert before
+			if (tmp->m_data == insert_before) {
+				node->m_next = this->head;
+				head = node;  // made this node the new head
+				
+			} else {
+				while (tmp != NULL) {
+					if (tmp->m_data == insert_before) {
+						node->m_next = tmp;
+						prev->m_next = node;
+					}
+					prev = tmp;
+					tmp = tmp->m_next;
+				}
+			}
+		}
+
+
+        void print() 
+		{
             Node *head = this->head;
             int i = 1;
             while (head) {
@@ -106,6 +135,10 @@ int main()
 	list->insert_after(10, 2);
 
 	list->print(); 
+
+	cout << "insert 12 before 3" << endl;
+	list->insert_before(12, 3);
+	list->print();
 
 	delete list;
 
