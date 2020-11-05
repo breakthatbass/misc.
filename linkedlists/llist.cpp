@@ -100,6 +100,19 @@ class LinkedList {
 			}
 		}
 
+		// exists: search for node in list
+		bool exists(int data_to_find)
+		{	
+			Node *tmp = this->head;
+			while (tmp != NULL) {
+				if (tmp->m_data == data_to_find) {
+					return true;
+				}
+				tmp = tmp->m_next;
+			}
+			return false;
+		}
+
 
         void print() 
 		{
@@ -133,12 +146,17 @@ int main()
 
 	cout << "insert 10 after 2" << endl;
 	list->insert_after(10, 2);
-
 	list->print(); 
 
 	cout << "insert 12 before 3" << endl;
 	list->insert_before(12, 3);
 	list->print();
+
+	cout << "exists: searching for node 12 and 79" << endl;
+	bool yes = list->exists(12);
+	bool no = list->exists(79);
+	cout << "12: " << yes << endl;
+	cout << "79: " << no << endl;
 
 	delete list;
 
