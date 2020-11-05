@@ -114,6 +114,27 @@ class LinkedList {
 		}
 
 
+		// pop: remove and return element from end of list.
+		int pop(void)
+		{
+			int last;
+			Node *prev = NULL;
+			Node *current = this->head;
+
+			while (current != NULL) {
+				if (current->m_next == NULL) {
+					break;
+				}
+				prev = current;
+				current = current->m_next;
+			}
+			
+			last = current->m_data;
+			prev->m_next = NULL;
+			return last;
+		}
+
+
         void print() 
 		{
             Node *head = this->head;
@@ -124,7 +145,6 @@ class LinkedList {
                 i++;
             }
         }
-
 };
 
 
@@ -157,6 +177,11 @@ int main()
 	bool no = list->exists(79);
 	cout << "12: " << yes << endl;
 	cout << "79: " << no << endl;
+
+	cout << "popping!" << endl;
+	int last_el = list->pop();
+	cout << last_el << endl;
+	list->print();
 
 	delete list;
 
