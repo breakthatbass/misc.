@@ -1,47 +1,69 @@
-
 #include <iostream>
 using namespace std;
 
-
 class Node {
-	public:
-		int data;
-		Node *next;
+    public:
+        int m_data;
+        Node *m_next;
+};
+
+class LinkedList {
+    public:
+        int len;
+        Node *head;
+
+        // methods
+        void push(int data) {
+            Node *node = new Node();
+            node->m_data = data;
+            node->m_next = this->head;
+            this->head = node;
+            this->len++;
+        }
+
+
+		void append(int data) {
+			Node *node = new Node();
+			node->m_data = data;
+
+			if (this->head == NULL) {
+				node->m_next = head;
+				head = node;
+			} else {
+				Node *tmp = head;
+				while (tmp->m_next != NULL) {
+					tmp = tmp->m_next;
+				}
+				tmp->m_next = node;
+			}
+		}
+
+
+        void print() {
+            Node *head = this->head;
+            int i = 1;
+            while (head) {
+                std::cout << i << ": " << head->m_data << std::endl;
+                head = head->m_next;
+                i++;
+            }
+        }
+
 };
 
 
-void printlist(Node *n)
-{
-	while (n != NULL) {
-		cout << n->data << " ";
-		n = n->next;
-	}
-}
-
 int main()
 {
+    LinkedList *list = new LinkedList();
+    
+	list->push(3);
+	list->push(2);
+	list->push(1);
 
-	// make a list with 3 nodes
-	Node *head = NULL;
-	Node *second = NULL;
-	Node *third = NULL;
-
-	// allocate 3 nodes in the heap
-	head = new Node();
-	second = new Node();
-	third = new Node();
-
-	// assign some data
-	head->data = 1;
-	head->next = second;
-
-	second->data = 2;
-	second->next = third;
-
-	third->data = 3;
-	third->next = NULL;
-
-	printlist(head);
+	list->append(7);
+    
+    list->print();
 
 	return 0;
 }
+
