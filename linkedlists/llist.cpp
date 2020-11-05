@@ -55,6 +55,23 @@ class LinkedList {
 			this->head = prev;
 		}
 
+		void insert_after(int data, int insert_after)
+		{
+
+			Node *node = new Node();
+			node->m_data = data;
+
+			Node *tmp = this->head;
+
+			while (tmp != NULL) {
+				if (tmp->m_data == insert_after) {
+					node->m_next = tmp->m_next;
+					tmp->m_next = node;
+				}
+				tmp = tmp->m_next;
+			}
+		}
+
 
         void print() {
             Node *head = this->head;
@@ -83,6 +100,11 @@ int main()
 	cout << "reverse list" << endl;
 
 	list->reverse();
+	list->print(); 
+
+	cout << "insert 10 after 2" << endl;
+	list->insert_after(10, 2);
+
 	list->print(); 
 
 	delete list;
