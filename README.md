@@ -1,4 +1,4 @@
-# Remembrall
+# 🔮 Remembrall
 ### Things I want to remember
 
 A collection of data structures, algorithms, templates, and other 
