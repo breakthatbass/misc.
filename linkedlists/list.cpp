@@ -135,6 +135,26 @@ class LinkedList {
 		}
 
 
+		void delete_node(int data)
+		{
+			Node *prev = NULL;
+			Node *current = this->head;
+			Node *next = NULL;
+			
+			while(current) {
+				// store next
+				next = current->m_next;
+				if (current->m_data == data) {
+					prev->m_next = next;
+					//current = NULL;
+					delete current;
+				}
+				prev = current;
+				current = next;
+			}
+		}
+
+
         void print() 
 		{
             Node *head = this->head;
@@ -180,7 +200,11 @@ int main()
 
 	cout << "popping!" << endl;
 	int last_el = list->pop();
-	cout << last_el << endl;
+	cout << "popped elemenet: " << last_el << endl;
+	list->print();
+
+	cout << "deleting 12" << endl;
+	list->delete_node(12);
 	list->print();
 
 	delete list;
