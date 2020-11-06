@@ -146,7 +146,6 @@ class LinkedList {
 				next = current->m_next;
 				if (current->m_data == data) {
 					prev->m_next = next;
-					//current = NULL;
 					delete current;
 				}
 				prev = current;
