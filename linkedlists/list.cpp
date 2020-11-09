@@ -43,6 +43,8 @@ class LinkedList {
 			}
 		}
 
+
+		// reverse: rearrange pointers to reverse list
 		void reverse() 
 		{
 			Node *prev = NULL;
@@ -61,6 +63,8 @@ class LinkedList {
 			this->head = prev;
 		}
 
+
+		// insert_after: insert new node after certain position in list
 		void insert_after(int data, int insert_after)
 		{
 
@@ -78,6 +82,8 @@ class LinkedList {
 			}
 		}
 
+
+		// insert_before: insert new node before certain position in list
 		void insert_before(int data, int insert_before)
 		{
 			Node *node = new Node();
@@ -102,6 +108,7 @@ class LinkedList {
 				}
 			}
 		}
+
 
 		// exists: search for node in list
 		bool exists(int data_to_find)
@@ -138,6 +145,7 @@ class LinkedList {
 		}
 
 
+		// delete_node: delete a node from the list if it exists.
 		void delete_node(int data)
 		{
 			Node *prev = NULL;
@@ -157,6 +165,7 @@ class LinkedList {
 		}
 
 
+		// print: print list with the position of each element
         void print() 
 		{
             Node *head = this->head;
