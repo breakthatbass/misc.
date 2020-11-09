@@ -17,8 +17,8 @@ class LinkedList {
         void push(int data) 
 		{
             Node *node = new Node();
-            
 			node->m_data = data;
+
             node->m_next = this->head;
             this->head = node;
             this->len++;
@@ -41,6 +41,7 @@ class LinkedList {
 				}
 				tmp->m_next = node;
 			}
+			this->len++;
 		}
 
 
@@ -67,7 +68,6 @@ class LinkedList {
 		// insert_after: insert new node after certain position in list
 		void insert_after(int data, int insert_after)
 		{
-
 			Node *node = new Node();
 			node->m_data = data;
 
@@ -80,6 +80,7 @@ class LinkedList {
 				}
 				tmp = tmp->m_next;
 			}
+			this->len++;
 		}
 
 
@@ -95,7 +96,7 @@ class LinkedList {
 			// check to see if head node is one to insert before
 			if (tmp->m_data == insert_before) {
 				node->m_next = this->head;
-				head = node;  // made this node the new head
+				head = node;  // make this node the new head
 				
 			} else {
 				while (tmp != NULL) {
@@ -107,6 +108,7 @@ class LinkedList {
 					tmp = tmp->m_next;
 				}
 			}
+			this->len++;
 		}
 
 
@@ -141,6 +143,7 @@ class LinkedList {
 			
 			last = current->m_data;
 			prev->m_next = NULL;
+			this->len--;
 			return last;
 		}
 
@@ -158,6 +161,7 @@ class LinkedList {
 				if (current->m_data == data) {
 					prev->m_next = next;
 					delete current;
+					this->len--;
 				}
 				prev = current;
 				current = next;
@@ -171,10 +175,11 @@ class LinkedList {
             Node *head = this->head;
             int i = 1;
             while (head) {
-                cout << i << ": " << head->m_data << endl;
+                cout << head->m_data << endl;
                 head = head->m_next;
-                i++;
             }
+			// print length of list
+			cout << "length: " << this->len << endl;
         }
 };
 
