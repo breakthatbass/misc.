@@ -13,26 +13,29 @@ class LinkedList {
         Node *head;
 
         // methods
+		// push: add element to front of list
         void push(int data) 
 		{
             Node *node = new Node();
-            node->m_data = data;
+            
+			node->m_data = data;
             node->m_next = this->head;
             this->head = node;
             this->len++;
         }
 
-
+		// append: add element to end of list
 		void append(int data) 
 		{
+
 			Node *node = new Node();
 			node->m_data = data;
 
 			if (this->head == NULL) {
-				node->m_next = head;
-				head = node;
+				// if list is empty, made node head of list
+				this->head = node;
 			} else {
-				Node *tmp = head;
+				Node *tmp = this->head;
 				while (tmp->m_next != NULL) {
 					tmp = tmp->m_next;
 				}
@@ -159,7 +162,7 @@ class LinkedList {
             Node *head = this->head;
             int i = 1;
             while (head) {
-                std::cout << i << ": " << head->m_data << std::endl;
+                cout << i << ": " << head->m_data << endl;
                 head = head->m_next;
                 i++;
             }
@@ -170,7 +173,8 @@ class LinkedList {
 int main()
 {
     LinkedList *list = new LinkedList();
-    
+   
+	list->append(25);	
 	list->push(3);
 	list->push(2);
 	list->push(1);
