@@ -1,12 +1,7 @@
-/** 
- * usage: compile and run with nums.txt as argument
- * nums.txt is in the directory
- * 
- * */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 #define MAXLEN 50
 
@@ -18,52 +13,54 @@ struct node
 typedef struct node node_t;
 
 
-// creat_new_node: creates new node for list.
-static node_t *create_new_node(int value)
+// new_node: creates new node for list
+static node_t *new_node(int value)
 {
-    node_t *new_node = malloc(sizeof(node_t));
-    new_node->value = value; 
-    new_node->next = NULL;
+    node_t *node = malloc(sizeof(node_t));
+    node->value = value; 
+    node->next = NULL;
 
-    return new_node;
+    return node;
 }
 
 
-//add_node: append new node on to list
-static node_t *add_node(node_t **head, node_t *new_node)
+// push: add node to front of list
+static void push(node_t **head, int value)
 {
+    node_t *node = new_node(value);
+
+    node->next = *head;
+    *head = node;
+}
+
+
+// append: add node to end of list
+static void append(node_t **head, int value)
+{
+    node_t *node = new_node(value);
+
     if (*head == NULL) {
-        new_node->next = *head;
-        *head = new_node;
-        return new_node;
+        node->next = *head;
+        *head = node;
     } else {
         node_t *tmp = *head;
-        while (tmp->next != NULL) 
+        while (tmp->next != NULL) {
             tmp = tmp->next;
-        tmp->next = new_node; 
+        }
+        tmp->next = node;
     }
-    return *head;
 }
 
 
-
-static node_t *push(node_t **head, node_t *pushval)
-{
-    pushval->next = *head;
-    *head = pushval;
-    return pushval;
-}
-
-
-
-static void reverse_list(node_t **head)
+// reverse: rearrange pointers to reverse list
+static void reverse(node_t **head)
 {
     node_t *prev = NULL;
     node_t *current = *head;
     node_t *next = NULL;
 
     while (current != NULL) {
-        // store next
+        // store next node
         next = current->next;
         // reverse current node's pointer
         current->next = prev;
@@ -75,82 +72,179 @@ static void reverse_list(node_t **head)
 }
 
 
-
-static void insert_after(node_t *prev_node, node_t *new_node)
+// insert_after: insert new node after certain node in list
+static void insert_after(node_t **head, int value, int insert_after)
 {
-    new_node->next = prev_node->next;
-    prev_node->next = new_node;
-}
+    node_t *node = new_node(value);
 
+    node_t *tmp = *head;
 
-
-static node_t *find_node(node_t *head, int value)
-{
-    node_t *tmp = head;
     while (tmp != NULL) {
-        if (tmp->value == value)
-            return tmp;
+        if (tmp->value == insert_after) {
+            node->next = tmp->next;
+            tmp->next = node;
+        }
         tmp = tmp->next;
     }
-    return NULL;
 }
 
 
-// load_file: take a file of nums and load them into list
-static node_t *load_file(char *file)
+// insert_before: insert new node before certain node in list
+static void insert_before(node_t **head, int value, int insert_before)
 {
-    FILE *fp;
-    char buffer[MAXLEN];
-    node_t *head;
-    node_t *node;
+    node_t *node = new_node(value);
 
-    fp = fopen(file, "r");
-    if (fp == NULL) {
-      fprintf(stderr, "Could not open file %s\n", file);
-      exit(EXIT_FAILURE);
-  }
+    node_t *prev = NULL;
+    node_t *tmp = *head;
 
-  head = NULL;
-  // take each value from file, load it into a buffer
-  while (fgets(buffer, sizeof(node_t), fp)) {
-      // make sure it's not a text file
-      if (isalpha(buffer[0])) {
-          fprintf(stderr, "error: problem with file\n");
-          exit(EXIT_FAILURE);
-      }
-      // convert value to int, put it in a node
-      node = create_new_node(atoi(buffer));
-      // append node to list
-      push(&head, node);
-  }
-  fclose(fp);
-  return head;
+    // check to see if head node is the node to insert before
+    if (tmp->value == insert_before) {
+        node->next = *head;
+        *head = node;
+    } else {
+        while (tmp != NULL) {
+            if (tmp->value == insert_before) {
+                node->next = tmp;
+                prev->next = node;
+            }
+            prev = tmp;
+            tmp = tmp->next;
+        }
+    }
 }
 
 
+// exists: search for node in list, return a boolean
+static bool exists(node_t **head, int data)
+{
+    node_t *tmp = *head;
+    while (tmp != NULL) {
+        if (tmp->value == data)
+            return true;
+        tmp = tmp->next;
+    }
+    return false;
+}
 
-static void printlist(node_t *head)
+
+// pop: remove and return node->value from end of list
+int pop(node_t **head)
+{
+    int last;
+    node_t *prev = NULL;
+    node_t *current = *head;
+
+    while (current != NULL) {
+        if (current->next == NULL) {
+            // found last node in list
+            break;
+        }
+        prev = current;
+        current = current->next;
+    }
+
+    last = current->value;
+    prev->next = NULL;
+
+    free(current);
+    
+    return last;
+}
+
+
+// delete_node: delete a node form the list if it exists
+static void delete_node(node_t **head, int value)
+{
+    node_t *prev = NULL;
+    node_t *current = *head;
+    node_t *next = NULL;
+
+    while (current != NULL) {
+        // store next
+        next = current->next;
+        if (current->value == value) {
+            prev->next = next;
+            free(current);
+        }
+        prev = current;
+        current = next;
+    }
+}
+
+
+// destroy: delete and free entire list
+static void destroy(node_t **head)
+{
+    node_t *current = *head;
+    node_t *next = NULL;
+
+    while (current != NULL) {
+        // store next
+        next = current->next;
+        current->next = NULL;
+        free(current);
+        current = next;
+    }
+}
+
+
+// print: print list with position of each element
+static void print(node_t *head)
 {
     node_t *tmp = head;
+    int i = 1;
 
     while (tmp != NULL)
     {
-        printf("%d\n", tmp->value);
+        printf("%d: %d\n", i++, tmp->value);
         tmp = tmp->next;
     }
 }
-
 
 
 int main(int argc, char **argv)
 {
-    char *file;
-    
-    file = argv[1];
+    node_t *head = NULL;
 
-    node_t *list = load_file(file);
-    reverse_list(&list);
-    printlist(list);
+    print(head);
+
+    append(&head, 15);
+    push(&head, 23);
+    push(&head, 22);
+    push(&head, 21);
+    append(&head, 35);
+    print(head);
+
+    printf("reversing list...\n");
+    reverse(&head);
+    print(head);
+
+    printf("insert 100 after 15\n");
+    insert_after(&head, 100, 15);
+    print(head);
+
+    printf("insert 12 before 21\n");
+    insert_before(&head, 12, 21);
+    print(head);
+
+    printf("exists: searching for node 100 and 79\n");
+    bool yes = exists(&head, 100);
+    bool no = exists(&head, 79);
+    printf("100: %d\n", yes);
+    printf("79: %d\n", no);
+
+    printf("popping!\n");
+    int last_el = pop(&head);
+    printf("popped element: %d\n", last_el);
+    print(head);
+
+    printf("deleting 100\n");
+    delete_node(&head, 100);
+    print(head);
+
+    printf("destroying list\n");
+    destroy(&head);
+    print(head);
 
     return 0;
 }
