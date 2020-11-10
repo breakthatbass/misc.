@@ -3,8 +3,6 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-#define MAXLEN 50
-
 struct node
 {
     int value;
