@@ -179,10 +179,11 @@ static void destroy(node_t **head)
     while (current != NULL) {
         // store next
         next = current->next;
-        current->next = NULL;
         free(current);
         current = next;
     }
+	// set head to empy otherwise garbage value will be in freed mem
+	*head = 0;
 }
 
 
