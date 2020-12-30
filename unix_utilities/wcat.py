@@ -6,7 +6,6 @@ def main():
         for line in sys.stdin:
             print(line, end='')
 
-
     i = 1
     while (i < len(sys.argv)):
         try:
