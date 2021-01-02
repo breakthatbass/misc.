@@ -6,6 +6,7 @@
 // binary to decimal converter
 int btod(char *bin)
 {
+	int i;
 	int n = 0;		// the decimal number we will return
 	
 	/**
@@ -16,9 +17,9 @@ int btod(char *bin)
 	int x = 1;
 
 	int len = strlen(bin)-1;
-	// we work back because we don't know how many bits
+	// we work backwards because we don't know how many bits
 	// might be in our binary number
-	for (int i = len; i >= 0; i--) {
+	for (i = len; i >= 0; i--) {
 		// if there's a 1, add our current x value to n
 		if (bin[i] == '1') n += x;
 		/** shift bits 1 place to the left
