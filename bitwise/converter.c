@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 
+#include "helpers.h"
+
+#define MAXBIN 64
 
 // binary to decimal converter
 int btod(char *bin)
@@ -31,13 +35,39 @@ int btod(char *bin)
 }
 
 
+
+// decimal to binary converter
+char *dtob(int n)
+{
+	static char b[MAXBIN];
+	int i;
+
+	for (i = 0; n > 0; i++) {
+		itoa(n%2, &b[i]);
+		n = n >> 2;
+	}
+	return b;
+}
+
+
 int main()
 {
-	// tests
+	//binary to decimal  tests
 	assert(btod("01000001") == 65);
 	assert(btod("11111111") == 255);
 	assert(btod("11000000111001") == 12345);
 	assert(btod("00000000") == 0);
+
+	// decimal to binary tests
+	assert(strcmp(dtob(65), "1000001") == 0);
+	assert(strcmp(dtob(255), "11111111") == 0);
+	//assert(strcmp(dtob(12345), "11000000111001") == 0); // fails
+
+	// check what it is
+	char *t = malloc(sizeof(char)*64);
+	t = dtob(12345);
+	printf("%s\n", t);
+	
 
 	return 0;
 }
