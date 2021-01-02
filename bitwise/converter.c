@@ -9,7 +9,7 @@ int btod(char *bin)
 	int n = 0;		// the decimal number we will return
 	
 	/**
-	 * raise represent each decimal at each binary place
+	 * x represents each decimal at each binary place.
 	 * start with 1 and double it with each loop
 	 * 1, 2, 4, 8, 16, 32, 64, 255...
 	 * */
@@ -19,7 +19,7 @@ int btod(char *bin)
 	// we work back because we don't know how many bits
 	// might be in our binary number
 	for (int i = len; i >= 0; i--) {
-		// if there's a 1, add our current raise value to n
+		// if there's a 1, add our current x value to n
 		if (bin[i] == '1') n += x;
 		/** shift bits 1 place to the left
 		 * aka multply each decimal by 2
