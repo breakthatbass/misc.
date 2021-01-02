@@ -29,7 +29,11 @@ int btod(char *bin)
 
 int main()
 {
-	char *b = "01000001";
-	int x = btod(b);
-	assert(x == 65);	
+	// tests
+	assert(btod("01000001") == 65);
+	assert(btod("11111111") == 255);
+	assert(btod("11000000111001") == 12345);
+	assert(btod("00000000") == 0);
+
+	return 0;
 }
