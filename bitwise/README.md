@@ -19,12 +19,12 @@ if we represent this number in base 10 (decimal) as we normally use numbers in r
 |mult     |0x10^7|0x10^6|0x10^5|0x10^4|0x10^3|0x10^2|6x10^1|5x10^0|  
 
 
-**result**: 
-`0x10^n` will always be zero which means there are no numbers in that place.  
-`6x10^1 = 60` since that means there is a 6 in the tens place.  
-`5x10^0 = 5` since that's for the ones place.  
-`60 + 5 = 65`
-
+**results**: 
+- `0x10^n` will always be zero which means there are no numbers in that place.  
+- `6x10^1 = 60` since that means there is a 6 in the tens place.  
+- `5x10^0 = 5` since that's for the ones place.  
+- `60 + 5 = 65`
+#
 **base 2** (binary)
 |nth place|7     |6     |5     |4     |3     |2     |1     |0     |
 |---------|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
@@ -32,22 +32,23 @@ if we represent this number in base 10 (decimal) as we normally use numbers in r
 |mult     |0x2^7 |1x2^6 |0x2^5 |0x2^4 |0x2^3 |0x2^2 |0x2^1 |1x2^0 |  
 
 **result**: 
-`1x2^0` = `1` (decimal)  
-`1x2^6` = `64` (decimal)  
-`1 + 64` = `65`  
-this is an 8-bit binary number which means there are 8 places to store a number. 8-bits adds up to 1-byte -> the size of a `char` on most systems.  
-in each place that you multiply the number there by `2^n`. then you sum the numbers. the `0`s will always multiply to `0`. and the `1`s will be a number.
-
-Table to represent what the ones are in each place
+- `1x2^0` = `1` (decimal)  
+- `1x2^6` = `64` (decimal)  
+`- 1 + 64` = `65`  
+- this is an 8-bit binary number which means there are 8 places to store a number. 8-bits is equal to 1-byte -> the size of a `char` on most systems.  
+- in each place, you multiply the number there by `2^n`. then you sum the numbers. 
+- the `0`s will always multiply to `0`. and the `1`s will be a number.
+#
+Table to represent what the ones are in each place with bin num `11111111`:
 |nth place|7     |6     |5     |4     |3     |2     |1     |0     |
 |---------|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 |number   |128   |64    |32    |16    |8     |4     |2     |1     |
 |mult     |1x2^7 |1x2^6 |1x2^5 |1x2^4 |1x2^3 |1x2^2 |1x2^1 |1x2^0 |  
 
-
-`11111111` in binary would be `128` + `64` + `32` + `16` + `8` + `4` + `2` + `1` which equals `255`.  
-`255` is the highest number an 8-bit number can go.
-
+**results**
+- `11111111` in binary would be `128` + `64` + `32` + `16` + `8` + `4` + `2` + - `1` which equals `255`.  
+- `255` is the highest number an 8-bit number can go.
+#
 ## hexidecimal notation
 
 there are only 16 different symbols for hexidecimal and no double digits.  
