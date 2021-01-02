@@ -40,7 +40,7 @@ in each place that you multiply the number there by `2^n`. then you sum the numb
 
 Table to represent what the ones are in each place
 |nth place|7     |6     |5     |4     |3     |2     |1     |0     |
-|---------|------|------|------|------|------|------|------|------|
+|---------|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
 |number   |128   |64    |32    |16    |8     |4     |2     |1     |
 |mult     |1x2^7 |1x2^6 |1x2^5 |1x2^4 |1x2^3 |1x2^2 |1x2^1 |1x2^0 |  
 
