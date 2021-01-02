@@ -16,7 +16,9 @@ if we represent this number in base 10 (decimal) as we normally use numbers in r
 |nth place|7     |6     |5     |4     |3     |2     |1     |0     |
 |---------|------|------|------|------|------|------|------|------|
 |number   |0     |0     |0     |0     |0     |0     |6     |5     |
-|mult     |0x10^7|0x10^6|0x10^5|0x10^4|0x10^3|0x10^2|6x10^1|5x10^0|
+|mult     |0x10^7|0x10^6|0x10^5|0x10^4|0x10^3|0x10^2|6x10^1|5x10^0|  
+
+
 **result**: 
 `0x10^n` will always be zero which means there are no numbers in that place.  
 `6x10^1 = 60` since that means there is a 6 in the tens place.  
@@ -27,7 +29,8 @@ if we represent this number in base 10 (decimal) as we normally use numbers in r
 |nth place|7     |6     |5     |4     |3     |2     |1     |0     |
 |---------|------|------|------|------|------|------|------|------|
 |bin      |0     |1     |0     |0     |0     |0     |0     |1     |
-|mult     |0x2^7 |1x2^6 |0x2^5 |0x2^4 |0x2^3 |0x2^2 |0x2^1 |1x2^0 |
+|mult     |0x2^7 |1x2^6 |0x2^5 |0x2^4 |0x2^3 |0x2^2 |0x2^1 |1x2^0 |  
+
 **result**: 
 `1x2^0` = `1` (decimal)  
 `1x2^6` = `64` (decimal)  
@@ -39,7 +42,8 @@ Table to represent what the ones are in each place
 |nth place|7     |6     |5     |4     |3     |2     |1     |0     |
 |---------|------|------|------|------|------|------|------|------|
 |number   |128   |64    |32    |16    |8     |4     |2     |1     |
-|mult     |1x2^7 |1x2^6 |1x2^5 |1x2^4 |1x2^3 |1x2^2 |1x2^1 |1x2^0 |
+|mult     |1x2^7 |1x2^6 |1x2^5 |1x2^4 |1x2^3 |1x2^2 |1x2^1 |1x2^0 |  
+
 
 `11111111` in binary would be `128` + `64` + `32` + `16` + `8` + `4` + `2` + `1` which equals `255`.  
 `255` is the highest number an 8-bit number can go.
