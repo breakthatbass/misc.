@@ -11,7 +11,7 @@ int btod(char *bin)
 	/**
 	 * raise represent each decimal at each binary place
 	 * start with 1 and double it with each loop
-	 * 1, 2, 4, 8, 16, 32, 63, 255...
+	 * 1, 2, 4, 8, 16, 32, 64, 255...
 	 * */
 	int raise = 1;
 
