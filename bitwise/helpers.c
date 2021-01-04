@@ -2,8 +2,12 @@
 * these functions comes from page 62 and 64 of the second
 * edition of K&R. it's a bit of my own variant
 * but it's the same logic which I copied
+* 
+* in our program we convert each int to a string
+* one by one so we don't use the reverse function
+* in the itoa function that they do in the book
+* we use it in our dtob func at the end
 * */
-
 #include <string.h>
 
 
@@ -37,6 +41,5 @@ void itoa(int n, char *s)
 
 	if (sign < 0) s[i++] = '-';
 	s[i] = '\0';
-	reverse(s);	
 }
 
