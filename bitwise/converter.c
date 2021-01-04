@@ -16,7 +16,7 @@ uint64_t btod(char *bin)
 	 * start with 1 and double it with each loop
 	 * 1, 2, 4, 8, 16, 32, 64...
 	 * */
-	int x = 1; // base
+	uint64_t x = 1; // base
 
 	int len = strlen(bin)-1;
 	// we work backwards because we don't know how many bits
@@ -62,8 +62,8 @@ int main()
 	assert(btod("11111111") == 255);
 	assert(btod("11000000111001") == 12345);
 	assert(btod("00000000") == 0);
-	//assert(btod("1011101001000011101101110011111111111") == 99999999999); // fails
-	//assert(btod("111010011011100000010111100011110111") == 62738495735);  // fails
+	assert(btod("1011101001000011101101110011111111111") == 99999999999); // fails
+	assert(btod("111010011011100000010111100011110111") == 62738495735);  // fails
 
 	// decimal to binary tests
 	assert(strcmp(dtob(65), "1000001") == 0);
