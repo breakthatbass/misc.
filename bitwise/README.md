@@ -65,7 +65,7 @@ F 15
 ```
 
 
-## bitwise operators
+## bitwise operators & bitmasks
 
 - `&` and
 - `|` or
@@ -73,11 +73,74 @@ F 15
 - `^` xor
 - `<<` shift left
 - `>>` shift right
-
+#
 - `&` : extracts data
 - `|` : sets data
 - `^` : toggles data
+- `~` : 'flips' data
+#
+bit masks are an abstract way to deal with specific bytes in a binary.  
+let's say we have a binary, `01011101`, or `187`, and we want to deal with the third bit in from the left.  
+our mask would look like this: `00100000` we have a 1 in the place of the bit we care about.  
+we can now use the mask to execute any of the operators above on it.  
+```
+    01011101
+&   00010000
+--------------
+    00010000
+```
+or
+``` C
+int n = bin & mask;
+```
+and if we're looking at seperate bits within a bitfield, we would move that n over to right the amount of places it would need to go to trim the trailing zeros.
+```C
+n = n >> 3;
+```
+This is never done this way though.  
+   
+     
+let's say we want to clear the bit, which is to say, leave the bits alone except for the one bit we care about.   
 
+we could do this:
+``` C
+int n = bin & ~(mask);
+```
+this the mask, inverts it with `~` and ANDs in to the binary. it would end up looking like this after the inversion:
+```
+bin:        01011101
+mask:     & 11101111
+         --------------
+            01001101
+```
+the end product is the same as the original except for the one bit that got cleared.  
+in the real world, it would look like this:
+```C
+int y = 1;  // 1 because we're only dealing with one bit in the mask
+bin &= ~(y << 4);
+```
+we shift to the left 4 spots because `1` is the equivelent of `00000001`.
+we could also just do:
+```C
+int y = 16;  // same as 00010000
+bin &= ~(y);
+```
+### toggling bits
+we'll be using `^` to toggle bits. aka turn on or off the bits.  
+```C
+bin = 0b10111011;  // 187
+mask = 0b00100000;
+// same as before
+
+int n = bin ^ mask;
+
+// or the more abstract way
+int y = 1;
+bin ^= (y << 5); // produces 155
+
+// and we can switch it back the same way
+bin ^= (y << 5); // back to 187
+```
 
 ## bitfields
 
