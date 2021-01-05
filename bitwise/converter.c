@@ -70,7 +70,6 @@ char *btoh(char *bin) {
 
 	hex = (char*)malloc(sizeof(char)*hexlen);
 
-	int p = 0;
 	char buf[5];
 	for (i = 0; i < len; i+=4) {
 		// copy over 4 bins from binary str
