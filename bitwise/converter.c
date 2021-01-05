@@ -68,7 +68,7 @@ char *btoh(char *bin) {
 	int hexlen = len/4; // need one hex for every 4 bins
 	hexlen++;
 
-	hex = malloc(sizeof(char)*hexlen);
+	hex = (char*)malloc(sizeof(char)*hexlen);
 
 	int p = 0;
 	char buf[5];
