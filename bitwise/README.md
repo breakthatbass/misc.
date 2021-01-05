@@ -34,7 +34,7 @@ if we represent this number in base 10 (decimal) as we normally use numbers in r
 **result**: 
 - `1x2^0` = `1` (decimal)  
 - `1x2^6` = `64` (decimal)  
-`- 1 + 64` = `65`  
+- `1 + 64` = `65`  
 - this is an 8-bit binary number which means there are 8 places to store a number. 8-bits is equal to 1-byte -> the size of a `char` on most systems.  
 - in each place, you multiply the number there by `2^n`. then you sum the numbers. 
 - the `0`s will always multiply to `0`. and the `1`s will be a number.
@@ -73,3 +73,35 @@ F 15
 - `^` xor
 - `<<` shift left
 - `>>` shift right
+
+- `&` : extracts data
+- `|` : sets data
+- `^` : toggles data
+
+
+## bitfields
+
+``` C
+union {
+    struct bitfield {
+        char unused: 1;
+        char sw2: 1;
+        char sw1: 1;
+        char state: 2;
+        char value: 3;
+    }
+    char reg;
+};
+```
+
+above is an example of a bitfield for an 8-bit binary. 
+if you load the `struct` with a binary, it will store the appropriate parts in those variables.  
+let's say we have `10111011` and loaded it into the struct.  
+`unsued = 1` the fisrt bin  
+`sw2 = 0` the second bin  
+`sw1 = 1` the third bin  
+`state = 1 & 0` the fourth and fifth bins  
+`value = 0 & 1 & 1` the last three  
+
+the `union` is for the `reg` variable. if we set that, it sets all the bits.  
+in the case of, say an NES emulator where we want to reset, we can set `reg = 0x00` which will set every variable in the struct to `0`.
