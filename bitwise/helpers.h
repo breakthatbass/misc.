@@ -1,8 +1,6 @@
 #ifndef __HELPERS_H_
 #define __HELPERS_H_
 
-#include <stdlib.h>
-#include <string.h>
 // reverse string s in place
 void reverse(char *s);
  

@@ -59,15 +59,34 @@ char *dtob(uint64_t n)
 char *btoh(char *bin) {
 	// all the symbols we'll need
 	static const char *h = "123456789ABCDEF";
-	size_t len = strlen(bin);
-	int i;
-	
-	static char hex[10];
 
-	int c = 0;
-	for (i = 0; i < len-1; i++) {
-		;
+	int i, n;
+	char *hex;	// string to return
+
+	char *nbin = pad_bin(bin);
+	int len = strlen(nbin);
+	int hexlen = len/4; // need one hex for every 4 bins
+	hexlen++;
+
+	hex = malloc(sizeof(char)*hexlen);
+
+	int p = 0;
+	char buf[5];
+	for (i = 0; i < len; i+=4) {
+		// copy over 4 bins from binary str
+		memcpy(buf, nbin, 4);
+		// make it a proper str
+		buf[4] = '\0';
+		// convert to decimal
+		n = btod(buf) - 1;
+		// add to hex str
+		*hex++ = *(h+n);
+		// move ahead four spots for the next conversion
+		nbin += 4;
 	}
+	*hex = '\0';
+	// move pointer back to start
+	hex -= hexlen-1;
 	return hex;
 }
 
@@ -95,10 +114,13 @@ int main()
 	assert(strcmp(pad_bin("111111"), "00111111") == 0);
 	assert(strcmp(pad_bin("11111111111111"), "0011111111111111") == 0);
 	assert(strcmp(pad_bin("11111111111111111111111"), "011111111111111111111111") == 0);
-	
-	//char *a = pad_bin("101");
-	//printf("%s\n", a);
 
+	// tests for binary to hex
+	assert(strcmp(btoh("101"), "5") == 0);
+	assert(strcmp(btoh("1001"), "9") == 0);
+	assert(strcmp(btoh("111111"), "3F") == 0);
+	assert(strcmp(btoh("11111111111111111111"), "FFFFF") == 0);
+	assert(strcmp(btoh("10101011110011011110"), "ABCDE") == 0);
 
 	return 0;
 }
