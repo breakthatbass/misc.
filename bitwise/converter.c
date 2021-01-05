@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <math.h>
 
 #include "helpers.h"
 
@@ -55,6 +56,22 @@ char *dtob(uint64_t n)
 }
 
 
+char *btoh(char *bin) {
+	// all the symbols we'll need
+	static const char *h = "123456789ABCDEF";
+	size_t len = strlen(bin);
+	int i;
+	
+	static char hex[10];
+
+	int c = 0;
+	for (i = 0; i < len-1; i++) {
+		;
+	}
+	return hex;
+}
+
+
 int main()
 {
 	//binary to decimal  tests
@@ -71,6 +88,17 @@ int main()
 	assert(strcmp(dtob(12345), "11000000111001") == 0);
 	assert(strcmp(dtob(99999999999), "1011101001000011101101110011111111111") == 0);
 	assert(strcmp(dtob(62738495735), "111010011011100000010111100011110111") == 0);
+	
+	// tests for pad_bin function (helper function for btoh)
+	assert(strcmp(pad_bin("101"), "0101") == 0);
+	assert(strcmp(pad_bin("1001"), "1001") == 0);
+	assert(strcmp(pad_bin("111111"), "00111111") == 0);
+	assert(strcmp(pad_bin("11111111111111"), "0011111111111111") == 0);
+	assert(strcmp(pad_bin("11111111111111111111111"), "011111111111111111111111") == 0);
+	
+	//char *a = pad_bin("101");
+	//printf("%s\n", a);
+
 
 	return 0;
 }
