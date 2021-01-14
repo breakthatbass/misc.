@@ -3,68 +3,77 @@
 #include <string.h>
 
 
+// split a string into an array of strings based on delimiter
 char **split(char *s, const char *delim)
 {
     char **split_s;
-    char *token, *string, *tofree;
-    size_t s_len, split_len;
+    char *token;
+    size_t len, s_len;
     int i;
     
-    s_len = strlen(s);
-
-    split_s = malloc(sizeof(char)*s_len*2);
+    len = strlen(s);
+    
+    split_s = malloc(sizeof(char*)*(len)*2);
     if (split_s == NULL) {
         fprintf(stderr, "split: could not allocate memory\n");
         exit(EXIT_FAILURE);
     }
 
-    tofree = string = strdup(s);
-
     i = 0;
-    while ((token = strsep(&string, delim)) != NULL) {
-        // ignore white space after delimiter
-        if (*token == ' ') memmove(token, token+1, strlen(token));
+    token = strtok(s, delim);
+    while (token != NULL) {
         *split_s = token;
-        i++;
+        if (**split_s == ' ' || **split_s == '\n')
+            memmove(*split_s, *(split_s)+1, strlen(*split_s));
+
+        // add null terminator at end of each string
+        s_len = strlen(*split_s);
+        split_s+=s_len;
+        *split_s = 0;
+        split_s -= s_len;
+
+        token = strtok(NULL, delim);
         split_s++;
+        i++;
     }
     *split_s = NULL;
-    // bring pointer back
     split_s -= i;
-
-    free(tofree);
     return split_s;
 }
 
-
+// print each string in an array of strings
 void print_vec(char **vec)
 {
-    //size_t length = sizeof(vec)/sizeof(vec[0]);
-    //
-    //printf("%zu\n", length);
-    int i, len = 0;
+    int len = 0;
     while (*vec) {
         printf("%s\n", *vec);
         len++;
         vec++;
     }
-    // move pointer back to first string
     vec -= len;
 }
+
+// get length of an array of strings
+int length(char **vec)
+{
+    int l = 0;
+    while(*vec) {
+        if (strcmp(*vec, "")) break;
+        vec++;
+        l++;
+    }
+    vec -= l;
+    return l;
+}
+
 
 
 int main(int argc, char **argv)
 {
-    char *str = "hello\nworld\nmy\nname\nis\ntaylor";
-    char *s = "one, two, three";
-  
-    
-    char **junk = split(s, ",");
-    print_vec(junk);
-    free(junk);
-
-    char **p = split(str, "\n");
+    char *s = "sukewbthnjdyv\nsjubpeyvx\nouehaytkgzbv\nqfueimylvcrb\n";
+    char **p = split(s, "\n");
     print_vec(p);
+
     free(p);
 
     return 0;
