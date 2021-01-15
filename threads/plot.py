@@ -15,7 +15,7 @@ plt.plot(list_x, fast_y, marker='.', label='optimized concurrent list')
 norm_y = [1.1, 2.1, 3.1, 4.15, 6.1, 8.2]
 plt.plot(list_x, norm_y, marker='.', label='single thread list')
 
-plt.xlabel("no. of nodes")
+plt.xlabel("no. of nodes (million)")
 plt.ylabel("time (seconds)")
 plt.title("concurrent linked list with 3 threads")
 
