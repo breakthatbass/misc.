@@ -41,7 +41,7 @@ destroy_list(list);         // delete and free all nodes in list
 ```
 
 ### Converter
-The converter library provides functions for converting numbers to different bases. This isn't hugely useful, but it has come in handy a couple of times. The functions tha return integers can return integers up to the size of `uint64_t`.
+The converter library provides functions for converting numbers to different bases. This isn't hugely useful, but it has come in handy a couple of times. The functions that return integers can return integers up to the size of `uint64_t`.
 
 ```C
 // binary to decimal
