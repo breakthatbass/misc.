@@ -87,15 +87,15 @@ int main()
 	pthread_t p1, p2;
 	printf("main: begin (counter = %d)\n", counter);
 
-    // parameters are 1. the thread variable
-    // 2. any modifications, usually NULL
-    // 3. function pointer (what the thread will be doing)
-    // 4. argument for function pointer (void *)
+        // parameters are 1. the thread variable
+        // 2. any modifications, usually NULL
+        // 3. function pointer (what the thread will be doing)
+        // 4. argument for function pointer (void *)
 	pthread_create(&p1, NULL, mythread, "A");
 	pthread_create(&p2, NULL, mythread, "B");
 
-    // pthread_join is basically wait() for threads
-    // it makes the main process wait for the threads to finish
+        // pthread_join is basically wait() for threads
+        // it makes the main process wait for the threads to finish
 	pthread_join(p1, NULL);
 	pthread_join(p2, NULL);
 
