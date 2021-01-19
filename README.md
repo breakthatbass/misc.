@@ -10,7 +10,7 @@ The `libs` directory contains a collection of utility libraries to reduce time c
 2. converters
 3. arrays
 
-### Linked List
+### Linked List Usage
 ```C
 // init list
 list_t *list;
@@ -18,9 +18,15 @@ list_init(list);
 
 // methods to add to list
 push(list, 1);             // push a value to the front of list
-append(list, 2);           // add a value to end of list 
+append(list, 2);           // add a value to end of list
 insert_after(list, 3, 2);  // add a value after a certain element
 insert_before(list, 4, 1); // add a value before a certain element
+
+// insert_after & insert_before functions:
+// param 1: linked list
+// param 2: value to add
+// param 3: target node to add before or after
+
 
 // now our list is: 4 -> 1 -> 2 -> 3 
 
@@ -28,6 +34,8 @@ insert_before(list, 4, 1); // add a value before a certain element
 int x = pop(list);          // return and remove last value in list
 int y = shift(list);        // return and remove first value in list
 remove_node(list, 1);       // remove a node in list if it exists
+
+// now our list is: 1
 
 // list utility functions
 print_list(list);           // prints each value in list and numbers them
