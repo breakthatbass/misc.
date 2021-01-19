@@ -29,7 +29,7 @@ int main()
 
     // buffers
     // we can use one variable and overwrite it
-    // but i have two hear to prevent potential confusion
+    // but i have two here to prevent potential confusion
 	char buffer[MAXLINE];
     char out[MAXLINE];
 
