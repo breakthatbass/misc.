@@ -1,3 +1,0 @@
-hello this is a test file to use with the binary tree program
-C is fun, isn't it?!
-goodbye

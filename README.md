@@ -16,6 +16,10 @@ the `notes` directory contains a collection of markdown files with notes and tem
 
 ### notes table of contents
 1. [matplotlib](https://github.com/breakthatbass/toolbox/blob/master/notes/plot.md)
+2. [bitwise](https://github.com/breakthatbass/toolbox/blob/master/notes/bitwise.md)
+3. [pipes](https://github.com/breakthatbass/toolbox/blob/master/notes/pipes.md)
+4. [getopt](https://github.com/breakthatbass/toolbox/blob/master/notes/getopt.md)
+5. [threads](https://github.com/breakthatbass/toolbox/blob/master/notes/threads.md)
 
 ### linkedlist
 This is a simple library for a singly linked list for integers.
