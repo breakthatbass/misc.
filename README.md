@@ -11,6 +11,12 @@ The `libs` directory contains a collection of utility libraries to reduce time c
 3. [split](#split)
 4. *...more to come*
 
+## notes
+the `notes` directory contains a collection of markdown files with notes and templates on certain topics and programs I regularly reference.
+
+### notes table of contents
+1. [matplotlib](https://github.com/breakthatbass/toolbox/blob/master/notes/plot.md)
+
 ### linkedlist
 This is a simple library for a singly linked list for integers.
 ```C
