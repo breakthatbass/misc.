@@ -34,8 +34,8 @@ typedef struct list list_t;
 
 // LINKED LIST API
 
-// init_list: initiate a linked list
-void init_list(list_t *list);
+// list_init: initiate a linked list
+void list_init(list_t *list);
 
 // print: print list with position of each element
 void print_list(list_t *list);

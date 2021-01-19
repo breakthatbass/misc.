@@ -6,7 +6,7 @@
 
 
 // list_init: initiate a linked list
-void init_list(list_t *list)
+void list_init(list_t *list)
 {
     list->head = NULL;
     list->nodes = 0;
