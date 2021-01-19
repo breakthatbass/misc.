@@ -43,8 +43,8 @@ char **split(char *s, const char *delim)
 }
 
 
-// print each string in an array of strings
-void print_strs(char **vec)
+// print_arr: each string in an array of strings
+void print_arr(char **vec)
 {
     int len = 0;
     while (*vec) {
@@ -56,7 +56,7 @@ void print_strs(char **vec)
 }
 
 
-// get length of an array of strings
+// arr_len: get length of an array of strings
 int arr_len(char **vec)
 {
     int l = 0;
@@ -68,26 +68,3 @@ int arr_len(char **vec)
     return l;
 }
 
-int main()
-{
-    printf("here\n");
-
-    char str1[50];
-    char *test1 = "poo butt";
-
-    char str2[50];
-    char *test2 = "foyedvcm\nyfodemvc\ncydvomef\nfdvmocey\nyvefocmd";
-
-    strcpy(str1, test1);
-    strcpy(str2, test2);
-
-    char **new_str = split(str1, " ");
-    char **new2 = split(str2, "\n");
-
-    print_vec(new_str);
-    printf("length 1: %d\n", length(new_str));
-    printf("length 2: %d\n", length(new2));
-    print_vec(new_str);
-    
-    return 0;
-}

@@ -19,8 +19,8 @@ extern "C" {
 // split: split a string into an array of strings based on delimiter
 char **split(char *s, const char *delim);
 
-// print_strs: print each string in an array of strings
-void print_strs(char **vec);
+// print_arr: print each string in an array of strings
+void print_arr(char **vec);
 
 // arr_len: get length of an array of strings
 int arr_len(char **vec);
