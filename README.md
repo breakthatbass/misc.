@@ -41,6 +41,7 @@ destroy_list(list);         // delete and free all nodes in list
 ```
 
 ### Split
+`split()` splits a string into an array of strings based on a delimiter.
 
 ```C
 char str[50];
