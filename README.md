@@ -40,6 +40,23 @@ destroy_list(list);         // delete and free all nodes in list
 
 ```
 
+### Converter
+The converter library provides functions for converting numbers to different bases. This isn't hugely useful, but it has come in handy a couple of times. The functions tha return integers can return integers up to the size of `uint64_t`.
+
+```C
+// binary to decimal
+int x = btod("010101");  // returns 21
+
+// decimal to binary
+char *bin = dtob(x);  // returns "010101"
+
+// binary to hex
+char *hex = btoh("1011111011101111");  // returns "BEEF"
+
+// hex to decimal
+int hdec = htod("BEEF");  // returns 48879
+```
+
 ### Split
 `split()` splits a string into an array of strings based on a delimiter.
 
