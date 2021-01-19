@@ -1,6 +1,6 @@
 # 🧰 toolbox
 
-A collection of c utility libraries and notes.
+A collection of c utility libraries, notes, and scripts.
 
 ## libs
 The `libs` directory contains a collection of utility libraries to reduce time coding the same data structures or functions over and over again. The libraries mainly are to suit my own needs but anyone can use them simply by adding the `.c` file and its corresponding header file into their own project.
@@ -21,6 +21,13 @@ the `notes` directory contains a collection of markdown files with notes and tem
 4. [getopt](https://github.com/breakthatbass/toolbox/blob/master/notes/getopt.md)
 5. [threads](https://github.com/breakthatbass/toolbox/blob/master/notes/threads.md)
 
+## scripts
+The `scripts` directory contains some scripts that I wrote and find useful
+
+### scripts table of contents
+1. [minunit test runner](https://github.com/breakthatbass/toolbox/blob/master/scripts/run_tests.sh)
+
+# 
 ### linkedlist
 This is a simple library for a singly linked list for integers.
 ```C
