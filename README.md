@@ -6,11 +6,13 @@ A collection of utility libraries and notes.
 The `libs` directory contains a collection of utility libraries to reduce time coding the same data structures or functions over and over again. The libraries mainly are to suit my own needs but anyone can use them simply by adding the `.c` file and its corresponding header file into their own project.
 
 ### libs table of contents
-1. linked list
-2. converters
-3. arrays
+1. [linked list](#linkedlist)
+2. [converter](#converter)
+3. [split](#split)
+4. *...more to come*
 
-### Linked Lists
+### linkedlist
+This is a simple library for a singly linked list for integers.
 ```C
 // init list
 list_t *list;
@@ -40,7 +42,7 @@ destroy_list(list);         // delete and free all nodes in list
 
 ```
 
-### Converter
+### converter
 The converter library provides functions for converting numbers to different bases. This isn't hugely useful, but it has come in handy a couple of times. The functions that return integers can return integers up to the size of `uint64_t`.
 
 ```C
@@ -57,7 +59,7 @@ char *hex = btoh("1011111011101111");  // returns "BEEF"
 int hdec = htod("BEEF");  // returns 48879
 ```
 
-### Split
+### split
 `split()` splits a string into an array of strings based on a delimiter.
 
 ```C
