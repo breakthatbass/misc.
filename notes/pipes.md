@@ -22,40 +22,40 @@ int main()
 {
 	int n;
 
-    // the pipe is used with an array of two elements
-    // one element represents to write end and the other, the read end
+    	// the pipe is used with an array of two elements
+    	// one element represents to write end and the other, the read end
 	int fd[2];
     	pid_t pid;
 
-    // buffers
-    // we can use one variable and overwrite it
-    // but i have two here to prevent potential confusion
+    	// buffers
+    	// we can use one variable and overwrite it
+    	// but i have two here to prevent potential confusion
 	char buffer[MAXLINE];
     	char out[MAXLINE];
 
-    // create the pipe with pipe() and error check
+    	// create the pipe with pipe() and error check
 	if (pipe(fd) < 0) {
 		perror("pipe");
 		exit(EXIT_FAILURE);
 	}
 
-    // create child process with fork() and error check
+    	// create child process with fork() and error check
 	if ((pid = fork()) < 0) {
 		perror("fork");
 		exit(EXIT_FAILURE);
 	} else if (pid > 0)	{ // parent process
-        // close read end of pipe
+        	// close read end of pipe
 		close(fd[0]);
-        // read from stdin into line
+        	// read from stdin into line
 		read(STDIN_FILENO, buffer, MAXLINE);
-        // write buffer into the write end of pipe
+        	// write buffer into the write end of pipe
 		write(fd[1], buffer, strlen(buffer));
 	} else {  // child process
-        // close write end of pipe
+        	// close write end of pipe
 		close(fd[1]);
-        // read from pipe into out and store size in n
+        	// read from pipe into out and store size in n
 		n = read(fd[0], out, MAXLINE);
-        // write contents of out to stdout (print it)
+        	// write contents of out to stdout (print it)
 		write(STDOUT_FILENO, out, n);
 	}
 	return 0;
