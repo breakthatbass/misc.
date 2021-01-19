@@ -1,6 +1,6 @@
 # 🧰 toolbox
 
-A collection of utility libraries and notes.
+A collection of c utility libraries and notes.
 
 ## libs
 The `libs` directory contains a collection of utility libraries to reduce time coding the same data structures or functions over and over again. The libraries mainly are to suit my own needs but anyone can use them simply by adding the `.c` file and its corresponding header file into their own project.
