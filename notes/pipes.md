@@ -25,13 +25,13 @@ int main()
     // the pipe is used with an array of two elements
     // one element represents to write end and the other, the read end
 	int fd[2];
-    pid_t pid;
+    	pid_t pid;
 
     // buffers
     // we can use one variable and overwrite it
     // but i have two here to prevent potential confusion
 	char buffer[MAXLINE];
-    char out[MAXLINE];
+    	char out[MAXLINE];
 
     // create the pipe with pipe() and error check
 	if (pipe(fd) < 0) {
