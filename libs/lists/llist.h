@@ -44,7 +44,7 @@ void print_list(list_t *list);
 bool exists(list_t *list, int value);
 
 // get_size: return the number of nodes in list
-int get_size(list_t *list)
+int get_size(list_t *list);
 
 
 // METHODS FOR ADDING ELEMENTS
@@ -74,7 +74,7 @@ int shift(list_t *list);
 void remove_node(list_t *list, int target);
 
 // destroy_list: delete and free entire list
-void destroy_list(list_t *list)
+void destroy_list(list_t *list);
 
 
 #ifdef __cplusplus
