@@ -1,20 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "split.h"
 
-// split a string into an array of strings based on delimiter
+static char *trim(char *str)
+{
+  char *end;
+  
+  // Trim leading space
+  while(isspace((unsigned char)*str)) str++;
+
+  if(*str == 0)  // All spaces?
+    return str;
+
+  // Trim trailing space
+  end = str + strlen(str) - 1;
+  if (*end != ' ') return str;
+  while(end > str && isspace((unsigned char)*end)) end--;
+
+  // Write new null terminator character
+  end[1] = '\0';
+
+  return str;
+}
+
+// split: take a string and break it up into an array of strings based on delim
 char **split(char *s, const char *delim)
 {
     char **split_s;
     char *token;
-    size_t len, s_len;
+    size_t length;
     int i;
-    
-    len = strlen(s);
-    
-    split_s = malloc(sizeof(char*)*(len)*2);
+
+    length = strlen(s);
+
+    split_s = calloc(length*2, sizeof(char*));
     if (split_s == NULL) {
         fprintf(stderr, "split: could not allocate memory\n");
         exit(EXIT_FAILURE);
@@ -23,22 +45,11 @@ char **split(char *s, const char *delim)
     i = 0;
     token = strtok(s, delim);
     while (token != NULL) {
-        *split_s = token;
-        if (**split_s == ' ' || **split_s == '\n')
-            memmove(*split_s, *(split_s)+1, strlen(*split_s));
-
-        // add null terminator at end of each string
-        s_len = strlen(*split_s);
-        split_s+=s_len;
-        *split_s = 0;
-        split_s -= s_len;
-
+		split_s[i] = trim(token);
         token = strtok(NULL, delim);
-        split_s++;
         i++;
     }
-    *split_s = NULL;
-    split_s -= i;
+	if (i > 0)split_s[i] = NULL;
     return split_s;
 }
 
