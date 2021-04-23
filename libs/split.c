@@ -30,7 +30,7 @@ static char *trim(char *str)
 char **split(char *s, const char *delim)
 {
     char **split_s;
-    char *token, tmp;
+    char *token, *tmp;
     size_t length;
     int i;
 
