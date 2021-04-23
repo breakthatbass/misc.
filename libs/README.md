@@ -82,3 +82,8 @@ char *hex = btoh("1011111011101111");  // returns "BEEF"
 // hex to decimal
 int hdec = htod("BEEF");  // returns 48879
 ```
+
+### To Do:
+- add tests for linked list and converter
+- fix mem leaks in converter
+- update this readme with proper links and install scripts
