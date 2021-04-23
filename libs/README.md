@@ -1,6 +1,7 @@
 # libs
-This is a collection of libraries and functions that I have used over time. I have more than what's here and I plan to add them as I have time.  
-Fork this repo and use these libs as you want to or use my installation scripts to install them as you need them.
+This is a collection of libraries and functions that I have built and used over time. I have more than what's here and I plan to add them as I have time.  
+
+Run tests: `./runtests`
 #
 ### [split](https://github.com/breakthatbass/toolbox/blob/master/libs/split.c)
 **split a string based on delimiter(s). Similar to the Python `split` method.**  
