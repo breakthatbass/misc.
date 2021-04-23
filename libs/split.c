@@ -30,11 +30,19 @@ static char *trim(char *str)
 char **split(char *s, const char *delim)
 {
     char **split_s;
-    char *token;
+    char *token, tmp;
     size_t length;
     int i;
 
     length = strlen(s);
+
+	tmp = malloc(sizeof(char)*length+1);
+	if (tmp == NULL) {
+		fprintf(stderr, "split: could not allocate memory\n");
+		exit(EXIT_FAILURE);
+	}
+	strcpy(tmp, s);
+	tmp[length] = '\0';
 
     split_s = calloc(length*2, sizeof(char*));
     if (split_s == NULL) {
@@ -43,7 +51,7 @@ char **split(char *s, const char *delim)
     }
 
     i = 0;
-    token = strtok(s, delim);
+    token = strtok(tmp, delim);
     while (token != NULL) {
 		split_s[i] = trim(token);
         token = strtok(NULL, delim);
