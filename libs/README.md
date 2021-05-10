@@ -1,9 +1,10 @@
 # libs
 This is a collection of libraries and functions that I have built and used over time. I have more than what's here and I plan to add them as I have time.  
 
+
 Run tests: `./runtests`
 #
-### [split](https://github.com/breakthatbass/toolbox/blob/master/libs/split.c)
+## [split](https://github.com/breakthatbass/toolbox/blob/master/libs/split.c)
 **split a string based on delimiter(s). Similar to the Python `split` method.**  
 Update: `split` no longer demolishes the original string :)  
 The array must be freed after.  
@@ -36,7 +37,7 @@ free(split_test);
 printf("%s\n", test);  // hello, how, are, you, today
 ```
 
-### linkedlist
+## linked list
 This is a simple library for a singly linked list for integers.
 ```C
 // init list
@@ -67,6 +68,32 @@ destroy_list(list);         // delete and free all nodes in list
 
 ```
 
+## [timing.h](https://github.com/breakthatbass/toolbox/blob/master/libs/timing.h)
+`Timing.h` is an ultra-simple timing library for benchmarking code. It doesn't have any options, it just times your code and saves the time as a float in the `timing` struct.  
+
+Just inlcude the `timing.h` header file after copying it over to your project directory and you're good to go. 
+
+Installation:  
+`curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/timing.h > timing.h`
+
+```C
+#include <stdio.h>
+#include "timing.h"
+
+int main()
+{
+    timing t;
+
+    start_timing(&t);
+    for (int i = 0; i < 9999999; i++) {
+        printf("timing is fun\n");
+    }
+    end_timing(&t);
+
+    printf("total time: %f\n". t.ttime);    // total time: 6.227586
+}
+```
+
 ### converter
 The converter library provides functions for converting numbers to different bases. This isn't hugely useful, but it has come in handy a couple of times. The functions that return integers can return integers up to the size of `uint64_t`.
 
@@ -83,8 +110,9 @@ char *hex = btoh("1011111011101111");  // returns "BEEF"
 // hex to decimal
 int hdec = htod("BEEF");  // returns 48879
 ```
-
-### To Do:
+#
+### Libs To Do:
 - add tests for linked list and converter
 - fix mem leaks in converter
 - update this readme with proper links and install scripts
+- add the rest of my libs that haven't made it on here yet (and tests for them!)
