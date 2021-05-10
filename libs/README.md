@@ -5,6 +5,14 @@ This is a collection of libraries and functions that I have built and used over 
 Run tests:   
 'cd tests && ./runtests`
 #
+### Table of Contents:
+1. [split](https://github.com/breakthatbass/toolbox/tree/master/libs#split)
+2. [strlib](https://github.com/breakthatbass/toolbox/tree/master/libs#strlib)
+3. [linked list](https://github.com/breakthatbass/toolbox/tree/master/libs#linked-list)
+4. [timing.h](https://github.com/breakthatbass/toolbox/tree/master/libs#timingh)
+5. [converter](https://github.com/breakthatbass/toolbox/tree/master/libs#converter)
+6. [minunit](https://github.com/breakthatbass/toolbox/tree/master/libs#minunit)
+#
 ## [split](https://github.com/breakthatbass/toolbox/blob/master/libs/split.c)
 **split a string based on delimiter(s). Similar to the Python `split` method.**  
 `Split` takes a string and turns it into an array of strings.  
@@ -155,4 +163,12 @@ char *hex = btoh("1011111011101111");  // returns "BEEF"
 
 // hex to decimal
 int hdec = htod("BEEF");  // returns 48879
+```
+
+## [minunit](https://github.com/breakthatbass/toolbox/blob/master/libs/minunit.h)
+This is my fork of minunit, the C unit testing library. I added colors to more easily see where programs fail and pass. For documentation, refer to the [repo](https://github.com/breakthatbass/minunit).  
+
+**Installation**:
+```
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/minunit.h > minunit.h
 ```
