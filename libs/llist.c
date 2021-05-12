@@ -4,26 +4,33 @@
 
 #include "llist.h"
 
-
+//#include <assert.h>
 // list_init: initiate a linked list
-void list_init(list_t *list)
+list_t *list_init(void)
 {
-    list->head = NULL;
-    list->nodes = 0;
+    list_t *l = malloc(sizeof(list_t));
+    if (l == NULL) {
+        perror("list_init:");
+        exit(EXIT_FAILURE);
+    }
+    l->head = NULL;
+    l->nodes = 0;
+
+    return l;
 }
 
 
 // new_node: create a new node
-static node_t *new_node(int value)
+static node_t *new_node(int value, node_t *next)
 {
-    node_t *new = malloc(sizeof(node_t));
-    if (new == NULL) {
-        perror("new_node");
-        exit(EXIT_FAILURE);
+    node_t *node = malloc(sizeof(node_t));
+
+    if (node != NULL) {
+        node->value = value;
+        node->next = next;
     }
-    new->value = value;
-    new->next = NULL;
-    return new;
+  
+    return node;
 }
 
 
@@ -31,13 +38,17 @@ static node_t *new_node(int value)
 // METHODS FOR ADDING ELEMENTS
 
 // push: add node to front of list
-void push(list_t *list, int value)
+int push(list_t *l, int value)
 {
-    node_t *node = new_node(value);
+    node_t *node = new_node(value, l->head);
+    int success = node != NULL;
 
-    node->next = list->head;
-    list->head = node;
-    list->nodes++;
+    if (success) {
+        l->head = node;
+        l->nodes++;
+    }
+
+    return success;
 }
 
 
@@ -182,15 +193,12 @@ void destroy_list(list_t *list)
     node_t *cur = list->head;
     node_t *next = NULL;
 
-    while (cur != NULL) {
-        // store next
+    while (cur) {
         next = cur->next;
         free(cur);
         cur = next;
     }
-	// this prevents garbage values and a seg fault if destroyed list is printed
-	list->head = NULL;
-    list->nodes = 0;
+    free(list);
 }
 
 
@@ -215,7 +223,7 @@ void print_list(list_t *list)
     node_t *tmp = list->head;
     int i = 1;
 
-    while (tmp != NULL) {
+    while (tmp) {
         printf("%d: %d\n", i++, tmp->value);
         tmp = tmp->next;
     }

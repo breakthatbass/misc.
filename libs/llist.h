@@ -18,6 +18,7 @@ extern "C" {
 #endif
 
 #include <stdbool.h>
+#include <stdlib.h>
 
 struct node {
     int value;
@@ -35,7 +36,8 @@ typedef struct list list_t;
 // LINKED LIST API
 
 // list_init: initiate a linked list
-void list_init(list_t *list);
+//void list_init(list_t *list);
+list_t *list_init(void);
 
 // print: print list with position of each element
 void print_list(list_t *list);
@@ -50,7 +52,7 @@ int get_size(list_t *list);
 // METHODS FOR ADDING ELEMENTS
 
 // push: add node to front of list
-void push(list_t *list, int value);
+int push(list_t *list, int value);
 
 // append: add node to end of list
 void append(list_t *list, int value);
