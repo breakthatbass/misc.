@@ -51,7 +51,7 @@ int push(list_t *l, int value)
     return success;
 }
 
-
+/*
 // append: add node to end of list
 void append(list_t *list, int value)
 {
@@ -216,7 +216,7 @@ bool exists(list_t *list, int value)
     return false;
 }
 
-
+*/
 // print: print list with position of each element
 void print_list(list_t *list)
 {
@@ -234,4 +234,24 @@ void print_list(list_t *list)
 int get_size(list_t *list)
 {
     return list->nodes;
+}
+
+
+
+// SORTING FUNCTIONS
+
+// reverse a linked list
+void reverse(list_t *l)
+{
+    node_t *prev = NULL;
+    node_t *cur = l->head;
+    node_t *next = l->head;
+
+    while (cur) {
+        next = next->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    l->head = prev;
 }

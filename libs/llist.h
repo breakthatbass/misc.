@@ -35,7 +35,6 @@ typedef struct list list_t;
 
 // LINKED LIST API
 
-// list_init: initiate a linked list
 //void list_init(list_t *list);
 list_t *list_init(void);
 
@@ -77,6 +76,11 @@ void remove_node(list_t *list, int target);
 
 // destroy_list: delete and free entire list
 void destroy_list(list_t *list);
+
+// METHODS FOR SORTING
+
+// reverse a list
+void reverse(list_t *l);
 
 
 #ifdef __cplusplus
