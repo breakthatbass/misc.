@@ -41,9 +41,6 @@ list_t *list_init(void);
 // print: print list with position of each element
 void print_list(list_t *list);
 
-// exists: search for node in list, return a boolean
-int exists(list_t *list, int value);
-
 // get_size: return the number of nodes in list
 size_t get_size(list_t *list);
 
@@ -56,12 +53,6 @@ int push(list_t *list, int value);
 // append: add node to end of list
 int append(list_t *list, int value);
 
-// insert_after: insert new node after target node in list
-void insert_after(list_t *list, int value, int target);
-
-// insert_before: insert new node before certain node in list
-void insert_before(list_t *list, int value, int target);
-
 
 // METHODS FOR REMOVING ELEMENTS
 
@@ -72,7 +63,7 @@ int pop(list_t *list);
 int shift(list_t *list);
 
 // delete: delete a node form the list if it exists
-void remove_node(list_t *list, int target);
+int remove_node(list_t *list, int target);
 
 // destroy_list: delete and free entire list
 void destroy_list(list_t *list);
@@ -83,6 +74,8 @@ void destroy_list(list_t *list);
 void reverse(list_t *l);
 
 int search(list_t *l, int val);
+
+int remove_node(list_t *l, int target);
 
 #ifdef __cplusplus
 }

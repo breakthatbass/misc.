@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #include "llist.h"
 
-//#include <assert.h>
+
 // list_init: initiate a linked list
 list_t *list_init(void)
 {
@@ -49,10 +48,6 @@ int push(list_t *l, int value)
     return success;
 }
 
-static void print_node(node_t *node) {
-    printf("%d\n", node->value);
-}
-
 
 // append: add node to end of list
 int append(list_t *l, int value)
@@ -73,57 +68,11 @@ int append(list_t *l, int value)
     return success;
 }
 
-/*
-// insert_after: insert new node after target node in list
-void insert_after(list_t *list, int value, int target)
-{
-    // if target isn't in list, do nothing and return
-    if (!exists(list, target)) return;
-
-    node_t *node = new_node(value);
-
-    node_t *tmp = list->head;
-
-    while (tmp->value != target)
-        tmp = tmp->next;
-
-    node->next = tmp->next;
-    tmp->next = node;
-    list->nodes++;
-}
 
 
-// insert_before: insert new node before certain node in list
-void insert_before(list_t *list, int value, int target)
-{
-    // if target isn't in list, do nothing and return
-    if (!exists(list, target)) return;
-
-    node_t *node = new_node(value);
-
-    node_t *prev = NULL;
-    node_t *tmp = list->head;
-
-    // check to see if head node is the node to insert before
-    if (tmp->value == target) {
-        node->next = tmp;
-        list->head = node;
-        list->nodes++;
-    } else {
-        while (tmp->value != target) {
-            prev = tmp;
-            tmp = tmp->next;
-        }
-
-        node->next = tmp;
-        prev->next = node;
-        list->nodes++;
-    }
-}
-*/
 
 // METHODS FOR REMOVING ELEMENTS
-
+/*
 // pop: remove and return last item in list
 int pop(list_t *l)
 {
@@ -145,13 +94,32 @@ int pop(list_t *l)
     l->nodes--;
     return last;
 }
-
+*/
+int pop(list_t *l)
+{
+    int last;
+    node_t *p = l->head;
+    node_t *prev = NULL;
+    if (get_size(l) == 1) {
+        last = p->value;
+        l->head = NULL;
+    } else {
+        while (p->next) {
+            prev = p;
+            p = p->next;
+        }
+        last = p->value;
+        prev->next = NULL;
+    }
+    free(p);
+    l->nodes--;
+    return last;
+}
 
 // shift: remove and return first item in list
 int shift(list_t *l)
 {
     int first;
-
     node_t *tmp = l->head;
     first = tmp->value;
 
@@ -162,32 +130,39 @@ int shift(list_t *l)
     return first;
 }
 
-/*
-// delete_node: delete a node form the list if it exists
-void remove_node(list_t *list, int target)
+
+
+int remove_node(list_t *l, int target)
 {
-    // if target isn't in list, do nothing and return
-    if (!exists(list, target)) return;
+    node_t **p = &l->head;
+    node_t *tmp = NULL;
 
-    node_t *prev = NULL;
-    node_t *cur = list->head;
-    node_t *next = NULL;
-
-    // check to see if head node is
-    if (cur->value == target)
-        list->head = cur->next;
-    else {
-        while (cur->value != target) {
-            prev = cur;
-            cur = cur->next;
-            next = cur->next;
-        }
-        prev->next = next;
+    while((*p)->next && (**p).value != target)
+        p = &(*p)->next;
+    if ((*p)->value == target) {
+        tmp = *p;
+        *p = tmp->next;
+        free(tmp);
+        l->nodes--;
+        return 1;
     }
-    free(cur);
-    list->nodes--;
+    return -1;
 }
-*/
+
+
+// UTILITY FUNCTIONS
+
+// slow linear search algorithm
+int search(list_t *l, int target)
+{
+    node_t **p = &l->head;
+    while((*p)->next && (*p)->value != target)
+        p = &(*p)->next;
+
+    if ((*p)->value == target)
+        return target;
+    return -1;
+}
 
 // destroy_list: delete and free entire list
 void destroy_list(list_t *l)
@@ -204,30 +179,10 @@ void destroy_list(list_t *l)
 }
 
 
-// UTILITY FUNCTIONS
-/*
-// exists: search for node in list, return a boolean
-int exists(list_t *list, int value)
-{
-    node_t *tmp = list->head;
-    while (tmp != NULL) {
-        if (tmp->value == value)
-            return true;
-        tmp = tmp->next;
-    }
-    return false;
-}
-*/
-int search(list_t *l, int val)
+// print: print list with position of each element
+void print_list(list_t *l)
 {
     node_t *tmp = l->head;
-}
-
-
-// print: print list with position of each element
-void print_list(list_t *list)
-{
-    node_t *tmp = list->head;
     int i = 1;
 
     while (tmp) {
