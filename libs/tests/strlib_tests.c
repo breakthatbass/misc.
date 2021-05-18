@@ -1,9 +1,18 @@
 #include "minunit/minunit.h"
 #include "../strlib.h"
 
-static char *hello = "hello, how are you";
-static char *cat = "the cat went to town";
-static char *move_ptr = "After the test, this will be the new string";
+#include <assert.h>
+#include <stdlib.h>
+
+#define BUF 50
+
+static char *hello;
+static char *cat;
+static char *move_ptr;
+
+static char *new_hello;
+static char *new_cat;
+static char *new_move_ptr;
 
 /* *
 * functions to test:
@@ -24,23 +33,54 @@ static char *move_ptr = "After the test, this will be the new string";
 
 void test_setup(void)
 {
+    hello = malloc(BUF);
+    new_hello = malloc(BUF);
+    cat = malloc(BUF);
+    new_cat = malloc(BUF);
+    move_ptr = malloc(BUF);
 
+    strcpy(hello, "hello, how are you");
+    strcpy(cat, "the cat went to town");
+    strcpy(move_ptr, "the needle in the haystack");
 }
 
 void test_teardown(void)
 {
-
+    free(hello);
+    free(cat);
+    free(new_hello);
+    free(new_cat);
+    free(move_ptr);
 }
 
-MU_TEST(...)
+MU_TEST(test_check)
 {
+    // force some null returns
+    char *empty1 = NULL;
+    char *empty2 = NULL;
+    mu_check(cpy_until(empty1, empty2, 'x') == NULL);
+    mu_check(strafter(empty1, empty2) == NULL);
+}
 
+MU_TEST(test_string_eq)
+{
+    cpy_until(new_hello, hello, 'a');
+    mu_assert_string_eq(new_hello, "hello, how ");
+
+    replace(cat, 'z', 'x', FIRST);
+    mu_assert_string_eq(cat, "the cat went to town");
+    replace(cat, 't', 'z', ALL);
+    mu_assert_string_eq(cat, "zhe caz wenz zo zown");
+
+    new_move_ptr = strafter(move_ptr, "needle ");
+    mu_assert_string_eq(new_move_ptr, "in the haystack");
 }
 
 MU_TEST_SUITE(test_suite)
 {
     MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
     MU_RUN_TEST(test_check);
+    MU_RUN_TEST(test_string_eq);
 }
 
 
