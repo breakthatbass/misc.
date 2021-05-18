@@ -83,6 +83,7 @@ void destroy_list(list_t *list);
 void reverse(list_t *l);
 
 int search(list_t *l, int val);
+//void *search(list_t *l, void *val)
 
 #ifdef __cplusplus
 }

@@ -205,23 +205,19 @@ void destroy_list(list_t *l)
 
 
 // UTILITY FUNCTIONS
-/*
-// exists: search for node in list, return a boolean
-int exists(list_t *list, int value)
-{
-    node_t *tmp = list->head;
-    while (tmp != NULL) {
-        if (tmp->value == value)
-            return true;
-        tmp = tmp->next;
-    }
-    return false;
-}
-*/
+
+// search: serach for a value in list, returns 1 if true, else 0
 int search(list_t *l, int val)
 {
     node_t *tmp = l->head;
+    while(tmp) {
+        if (tmp->value == val)
+            return 1;
+        tmp = tmp->next;
+    }
+    return 0;
 }
+
 
 
 // print: print list with position of each element
