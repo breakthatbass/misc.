@@ -68,8 +68,8 @@ int append(list_t *l, int value)
         while (tmp->next != NULL)
             tmp = tmp->next;
         tmp->next = node;
-        l->nodes++;
     }
+    l->nodes++;
     return success;
 }
 
@@ -120,7 +120,7 @@ void insert_before(list_t *list, int value, int target)
         list->nodes++;
     }
 }
-
+*/
 
 // METHODS FOR REMOVING ELEMENTS
 
@@ -131,11 +131,9 @@ int pop(list_t *list)
     node_t *prev = NULL;
     node_t *cur = list->head;
 
-    while (cur != NULL) {
-        if (cur->next == NULL) {
-            // found last node in list
+    while (cur) {
+        if (cur->next == NULL)
             break;
-        }
         prev = cur;
         cur = cur->next;
     }
@@ -148,7 +146,7 @@ int pop(list_t *list)
     return last;
 }
 
-
+/*
 // shift: remove and return first item in list
 int shift(list_t *list)
 {
