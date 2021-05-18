@@ -125,11 +125,11 @@ void insert_before(list_t *list, int value, int target)
 // METHODS FOR REMOVING ELEMENTS
 
 // pop: remove and return last item in list
-int pop(list_t *list)
+int pop(list_t *l)
 {
     int last;
     node_t *prev = NULL;
-    node_t *cur = list->head;
+    node_t *cur = l->head;
 
     while (cur) {
         if (cur->next == NULL)
@@ -142,27 +142,27 @@ int pop(list_t *list)
     prev->next = NULL;
 
     free(cur);
-    list->nodes--;
+    l->nodes--;
     return last;
 }
 
-/*
+
 // shift: remove and return first item in list
-int shift(list_t *list)
+int shift(list_t *l)
 {
     int first;
 
-    node_t *tmp = list->head;
+    node_t *tmp = l->head;
     first = tmp->value;
 
-    list->head = tmp->next;
+    l->head = tmp->next;
 
     free(tmp);
-    list->nodes--;
+    l->nodes--;
     return first;
 }
 
-
+/*
 // delete_node: delete a node form the list if it exists
 void remove_node(list_t *list, int target)
 {
@@ -187,12 +187,12 @@ void remove_node(list_t *list, int target)
     free(cur);
     list->nodes--;
 }
-
+*/
 
 // destroy_list: delete and free entire list
-void destroy_list(list_t *list)
+void destroy_list(list_t *l)
 {
-    node_t *cur = list->head;
+    node_t *cur = l->head;
     node_t *next = NULL;
 
     while (cur) {
@@ -200,14 +200,14 @@ void destroy_list(list_t *list)
         free(cur);
         cur = next;
     }
-    free(list);
+    free(l);
 }
 
 
 // UTILITY FUNCTIONS
-
+/*
 // exists: search for node in list, return a boolean
-bool exists(list_t *list, int value)
+int exists(list_t *list, int value)
 {
     node_t *tmp = list->head;
     while (tmp != NULL) {
@@ -217,8 +217,13 @@ bool exists(list_t *list, int value)
     }
     return false;
 }
-
 */
+int search(list_t *l, int val)
+{
+    node_t *tmp = l->head;
+}
+
+
 // print: print list with position of each element
 void print_list(list_t *list)
 {

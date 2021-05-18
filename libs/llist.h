@@ -42,7 +42,7 @@ list_t *list_init(void);
 void print_list(list_t *list);
 
 // exists: search for node in list, return a boolean
-bool exists(list_t *list, int value);
+int exists(list_t *list, int value);
 
 // get_size: return the number of nodes in list
 size_t get_size(list_t *list);
@@ -82,6 +82,7 @@ void destroy_list(list_t *list);
 // reverse a list
 void reverse(list_t *l);
 
+int search(list_t *l, int val);
 
 #ifdef __cplusplus
 }
