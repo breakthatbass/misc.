@@ -45,8 +45,10 @@ char *cpy_until(char *dst, char *s, const char t)
  *		supplied for config, it simply returns a pointer to s without doing
  *		anything. Also, if char orig is not found in s, it also returns a
  *		pointer to s.
+ *
+ *      enum config { FIRST = 1, ALL = 2 };
  * */
-enum config { FIRST = 1, ALL = 2 };
+
 
 char *replace(char *s, const char orig, const char repl, int config)
 {
@@ -57,8 +59,8 @@ char *replace(char *s, const char orig, const char repl, int config)
         while (*s != orig && *s) {
             s++; i++;
         }
-		  if (*s == orig)
-				*s = repl;
+		if (*s == orig)
+			*s = repl;
         s -= i;
 
         return s;
@@ -67,7 +69,7 @@ char *replace(char *s, const char orig, const char repl, int config)
         i = 0;
         while (*s) {
             if (*s == orig)
-					*s = repl;
+				*s = repl;
             s++;
             i++;
         }
@@ -97,6 +99,9 @@ char *strafter(const char *haystack, const char *needle)
 {
     char *tmp;
     size_t len;
+
+    if (haystack == NULL || needle == NULL)
+        return NULL;
 
     if ((tmp = strstr(haystack, needle))) {
         len = strlen(needle);
