@@ -10,8 +10,8 @@
 ******************************************************************************/
 
 
-#ifndef __LLIST_H__
-#define __LLIST_H__
+#ifndef LLIST_H__
+#define LLIST_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,7 +45,7 @@ void print_list(list_t *list);
 bool exists(list_t *list, int value);
 
 // get_size: return the number of nodes in list
-int get_size(list_t *list);
+size_t get_size(list_t *list);
 
 
 // METHODS FOR ADDING ELEMENTS
@@ -54,7 +54,7 @@ int get_size(list_t *list);
 int push(list_t *list, int value);
 
 // append: add node to end of list
-void append(list_t *list, int value);
+int append(list_t *list, int value);
 
 // insert_after: insert new node after target node in list
 void insert_after(list_t *list, int value, int target);

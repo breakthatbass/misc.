@@ -29,7 +29,6 @@ static node_t *new_node(int value, node_t *next)
         node->value = value;
         node->next = next;
     }
-  
     return node;
 }
 
@@ -47,29 +46,34 @@ int push(list_t *l, int value)
         l->head = node;
         l->nodes++;
     }
+    return success;
+}
 
+static void print_node(node_t *node) {
+    printf("%d\n", node->value);
+}
+
+
+// append: add node to end of list
+int append(list_t *l, int value)
+{
+    node_t *node = new_node(value, l->head);
+    int success = node != NULL;
+    node_t *tmp = l->head;
+    node->next = NULL;
+
+    if (!tmp)
+        l->head = node;
+    else {
+        while (tmp->next != NULL)
+            tmp = tmp->next;
+        tmp->next = node;
+        l->nodes++;
+    }
     return success;
 }
 
 /*
-// append: add node to end of list
-void append(list_t *list, int value)
-{
-    node_t *node = new_node(value);
-
-    if (list->head == NULL)
-        list->head = node;
-    else {
-        node_t *tmp = list->head;
-        while (tmp->next != NULL) {
-            tmp = tmp->next;
-        }
-        tmp->next = node;
-        list->nodes++;
-    }
-}
-
-
 // insert_after: insert new node after target node in list
 void insert_after(list_t *list, int value, int target)
 {
@@ -231,7 +235,7 @@ void print_list(list_t *list)
 
 
 // get_size: return the number of nodes in list
-int get_size(list_t *list)
+size_t get_size(list_t *list)
 {
     return list->nodes;
 }
