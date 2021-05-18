@@ -75,7 +75,7 @@ void reverse(list_t *l);
 
 int search(list_t *l, int val);
 
-int remove_node(list_t *l, int target)
+int remove_node(list_t *l, int target);
 
 #ifdef __cplusplus
 }

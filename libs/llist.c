@@ -72,7 +72,7 @@ int append(list_t *l, int value)
 
 
 // METHODS FOR REMOVING ELEMENTS
-
+/*
 // pop: remove and return last item in list
 int pop(list_t *l)
 {
@@ -94,7 +94,27 @@ int pop(list_t *l)
     l->nodes--;
     return last;
 }
-
+*/
+int pop(list_t *l)
+{
+    int last;
+    node_t *p = l->head;
+    node_t *prev = NULL;
+    if (get_size(l) == 1) {
+        last = p->value;
+        l->head = NULL;
+    } else {
+        while (p->next) {
+            prev = p;
+            p = p->next;
+        }
+        last = p->value;
+        prev->next = NULL;
+    }
+    free(p);
+    l->nodes--;
+    return last;
+}
 
 // shift: remove and return first item in list
 int shift(list_t *l)
@@ -160,7 +180,7 @@ void destroy_list(list_t *l)
 
 
 // print: print list with position of each element
-void print_list(list_t *list)
+void print_list(list_t *l)
 {
     node_t *tmp = l->head;
     int i = 1;
