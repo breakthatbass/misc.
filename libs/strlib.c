@@ -1,8 +1,10 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "strlib.h"
 
-/**
+
+/* *
  *	cpy_until:
  *
  * DESCRIPTION:
@@ -31,8 +33,7 @@ char *cpy_until(char *dst, char *s, const char t)
 }
 
 
-
-/**
+/* *
  *	replace:
  * 
  *	DESCRIPTION:
@@ -48,8 +49,6 @@ char *cpy_until(char *dst, char *s, const char t)
  *
  *      enum config { FIRST = 1, ALL = 2 };
  * */
-
-
 char *replace(char *s, const char orig, const char repl, int config)
 {
     int i;
@@ -80,11 +79,9 @@ char *replace(char *s, const char orig, const char repl, int config)
     else return s;
 }
 
-#include <string.h>
 
-/**
- *	strafter
- *		- requires <string.h>
+/* *
+ *	strafter:
  *
  * DESCRIPTION:
  *		strafter searches string haystack for substring needle. if found, it returns
