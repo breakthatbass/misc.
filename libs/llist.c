@@ -19,7 +19,7 @@ list_t *list_init(void)
 }
 
 
-/**
+/* *
  *	new_node:
  *	
  *	DESCRIPTION:
@@ -103,7 +103,13 @@ int append(list_t *l, int value)
     return success;
 }
 
-/*
+
+/************************************************
+ * REMOVING ELEMENTS FROM LIST
+ ***********************************************/
+
+
+/* *
  *	pop:
  *
  *	DESCRIPTION:
@@ -139,7 +145,7 @@ int pop(list_t *l)
 }
 
 
-/**
+/* *
  *	shift:
  *
  *	DESCRIPTION:
@@ -167,7 +173,7 @@ int shift(list_t *l)
 }
 
 
-/**
+/* *
  *	remove_node:
  *
  *	DESCRIPTION:
@@ -200,7 +206,7 @@ int remove_node(list_t *l, int target)
  * UTILITY FUNCTIONS
  ***********************************************/
 
-/**
+/* *
  *	search:
  *
  *	DESCRIPTION:
@@ -221,7 +227,7 @@ int search(list_t *l, int target)
 }
 
 
-/**
+/* *
  *	destroy_list:
  *
  *	DESCRIPTION:
@@ -241,7 +247,7 @@ void destroy_list(list_t *l)
 }
 
 
-/**
+/* *
  *	print_list:
  *
  *	DESCRIPTION:
@@ -267,7 +273,7 @@ size_t get_size(list_t *list)
 
 
 
-/**
+/* *
  *	reverse:
  *
  *	DESCRIPTION:
