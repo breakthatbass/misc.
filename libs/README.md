@@ -26,6 +26,7 @@ utility functions:
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/split.c > split.c  
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/split.h > split.h
 ```
+**Getting Started:**
 ```C
 #include "split.h"
 
@@ -59,6 +60,7 @@ for more details on these functions, refer to [`strlib.h`](https://github.com/br
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/strlib.c > strlib.c
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/strlib.h > strlib.h
 ```
+**Getting Started:**
 ```C
 #include "strlib.h"
 
@@ -93,6 +95,7 @@ This is a simple library for a singly linked list for integers. I really use it 
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/llist.c > llist.c
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/llist.h > llist.h
 ```
+**Getting Started:**
 ```C
 #include "llist.h"
 
@@ -144,8 +147,9 @@ destroy_list(list);         // clean up when done
 Just inlcude the `timing.h` header file after copying it over to your project directory and you're good to go. 
 
 **Installation**:  
-`curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/timing.h > timing.h`
+`curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/timing.h > timing.h`  
 
+**Usage:**
 ```C
 #include "timing.h"
 
@@ -170,7 +174,7 @@ The converter library provides functions for converting numbers to different bas
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/converter.c > converter.c
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/converter.h > converter.h
 ```
-
+**Usage:**
 ```C
 // binary to decimal
 int x = btod("010101");  // returns 21
