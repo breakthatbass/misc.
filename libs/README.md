@@ -1,8 +1,7 @@
-# libs
-This is a collection of libraries and functions that I have built and used over time. I have more than what's here and I plan to add them as I have time.  
+# libs docs
+A collection of C libraries I've made over time. All have tests passing except `converter`.
 
-
-Run tests:   
+## Run tests:   
 'cd tests && ./runtests`
 #
 ### Table of Contents:
@@ -28,9 +27,11 @@ curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/split.c
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/split.h > split.h
 ```
 ```C
+#include "split.h"
+
 char *test = "hello, how, are, you, today";
 
-char **split_test = split(test, ",");
+char **split_test = split(test, ","); // also removes whitespace at beginning and end of each str
 
 int len = arr_len(split_test);   // 5
 
@@ -43,76 +44,97 @@ print_arr(split_test);
 * today
 */
 
-free(split_test);
+free(split_test);  // must be freed when done
 
 // the original string is still usable after the split
 printf("%s\n", test);  // hello, how, are, you, today
 ```
 
 ## [strlib](https://github.com/breakthatbass/toolbox/blob/master/libs/strlib.c)
-a small string library with some useful functions not contained in `string.h`  
+a small string library with some useful functions not contained in `string.h`.  
+for more details on these functions, refer to [`strlib.h`](https://github.com/breakthatbass/toolbox/blob/master/libs/strlib.h). 
+
 **Installation**:
 ```
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/strlib.c > strlib.c
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/strlib.h > strlib.h
 ```
 ```C
+#include "strlib.h"
+
 char *s = "hello, how are you";
 
 // copy a string until a certain char is encountered
-char dest[20];
 
-cpy_until(dest, s, ','); 
+char dest[20];
+cpy_until(dest, s, ',');
 puts(dest)  // "hello"
 
 // replace first instance of char 'o' with 'z' in string s
-replace(s, 'o', 'z', FIRST);
-puts(s);    // "hellz, how are you"
+replace(s, 'o', 'x', FIRST);
+puts(s);    // "hellx, how are you"
 
 // reaplce all instances of char 'o' with 'z' in string s
-replace(s, 'o', 'z', ALL);
-puts(s)     // "hellz, hzw are yzu tzday"
+replace(s, 'o', 'x', ALL);
+puts(s)     // "hellx, hxw are yxu"
 
 // search a string for a substring and return a pointer to after the substring
-char *haystack = "db_type:sql"
-char *tmp = strafter(haystack, "db_type:");
+char *haystack = "db_type: sql"
+char *tmp = strafter(haystack, "db_type: ");
 puts(tmp);  // "sql"
 
 ```
 
 ## [linked list](https://github.com/breakthatbass/toolbox/blob/master/libs/llist.c)
-This is a simple library for a singly linked list for integers. I really use it as a template and copy over only functions I need.  
+This is a simple library for a singly linked list for integers. I really use it as a template and copy over only functions I need. It has a reverse function too for all your l33tc0de needs. for more details on these functions, refer to [`llist.h`](https://github.com/breakthatbass/toolbox/blob/master/libs/llist.h).
+
 **Installation**:
 ```
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/llist.c > llist.c
 curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/llist.h > llist.h
 ```
 ```C
+#include "llist.h"
+
 // init list
-list_t *list;
-list_init(list);
+list_t *list = list_init();
 
 // methods to add to list
 push(list, 1);             // push a value to the front of list
 append(list, 2);           // add a value to end of list
-insert_after(list, 3, 2);  // add the value 3 after 2
-insert_before(list, 4, 1); // add the value 4 before 1
 
-// now our list is: 4 -> 1 -> 2 -> 3 
+// let's add a few more elements
+append(list, 3);
+append(list, 4);
+append(list, 5);
+append(list, 6);
+
+// list: [1, 2, 3, 4, 5, 6]
 
 // methods to remove from list
 int x = pop(list);          // return and remove last value in list
 int y = shift(list);        // return and remove first value in list
-remove_node(list, 1);       // remove a node in list if it exists
 
-// now our list is: 2
+if (remove_node(list, 3) > -1)
+    printf("node was found and removed\n");
+else
+    printf("node was not found in list");
+
+// now our list is: [2, 4, 5]
+
+// searching a list
+if (search(list, 2) > -1)
+    printf("2 is in the list!!\n");
 
 // list utility functions
 print_list(list);           // prints each value in list and numbers them
-exists(list, 23);           // returns a bool, checks if a value is in list
+
 int size = get_size(list);  // returns the number of elements in list
 
-destroy_list(list);         // delete and free all nodes in list
+// bro, do you even l33tc0de?
+reverse(list);
+
+destroy_list(list);         // clean up when done
 
 ```
 
@@ -125,21 +147,19 @@ Just inlcude the `timing.h` header file after copying it over to your project di
 `curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/timing.h > timing.h`
 
 ```C
-#include <stdio.h>
 #include "timing.h"
 
-int main()
-{
-    timing t;
 
-    start_timing(&t);
-    for (int i = 0; i < 9999999; i++) {
-        printf("timing is fun\n");
-    }
-    end_timing(&t);
+timing t;
 
-    printf("total time: %f\n". t.ttime);    // total time: 6.227586
-}
+start_timing(&t);
+
+// block of code to time...
+
+end_timing(&t);
+
+printf("total time: %f\n". t.ttime);    // total time: 6.227586
+
 ```
 
 ## [converter](https://github.com/breakthatbass/toolbox/blob/master/libs/converter.c)
