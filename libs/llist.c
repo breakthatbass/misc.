@@ -19,7 +19,18 @@ list_t *list_init(void)
 }
 
 
-// new_node: create a new node
+/* *
+ *	new_node:
+ *	
+ *	DESCRIPTION:
+ *		allocate space for a new node in a list. if allocation is successful,
+ *		add the value to the node and connect it to list.
+ *
+ *	RETURN VALUE:
+ *		returns the node even if allocation is unsuccessful. error checking is
+ *		done outside of the function.
+ *
+ * */
 static node_t *new_node(int value, node_t *next)
 {
     node_t *node = malloc(sizeof(node_t));
@@ -32,10 +43,20 @@ static node_t *new_node(int value, node_t *next)
 }
 
 
+/************************************************
+ * ADDING ELEMENTS TO LIST
+ ***********************************************/
 
-// METHODS FOR ADDING ELEMENTS
 
-// push: add node to front of list
+/* *
+ *	push:
+ *
+ *	DESCRIPTION:
+ *		add a node to the front of the list
+ *
+ *	RETURN VALUE:
+ *		if allocation was succesful in new_node(), push will return 1. else, 0.
+ * */
 int push(list_t *l, int value)
 {
     node_t *node = new_node(value, l->head);
@@ -49,7 +70,20 @@ int push(list_t *l, int value)
 }
 
 
-// append: add node to end of list
+/* *
+ *	append:
+ *
+ *	DESCRIPTION:
+ *		add a node to the end of the list
+ *
+ *	RETURN VALUE:
+ *		if allocation was succesful in new_node(), append will return 1. else, 0.
+ *
+ *	MORE INFO:
+ *		append requires a check to see if the list is empty. if it is, we push
+ *		it to the beginning of the list. otherwise, we loop to the last node and
+ *		set the next pointer of that node to the new node. 
+ * */
 int append(list_t *l, int value)
 {
     node_t *node = new_node(value, l->head);
@@ -57,9 +91,10 @@ int append(list_t *l, int value)
     node_t *tmp = l->head;
     node->next = NULL;
 
-    if (!tmp)
-        l->head = node;
-    else {
+    if (!tmp) {
+        tmp = node;
+		tmp->next = NULL;
+	} else {
         while (tmp->next != NULL)
             tmp = tmp->next;
         tmp->next = node;
@@ -69,38 +104,31 @@ int append(list_t *l, int value)
 }
 
 
+/************************************************
+ * REMOVING ELEMENTS FROM LIST
+ ***********************************************/
 
 
-// METHODS FOR REMOVING ELEMENTS
-/*
-// pop: remove and return last item in list
+/* *
+ *	pop:
+ *
+ *	DESCRIPTION:
+ *		remove the last node in a list and return the value.
+ *
+ *	RETURN VALUE:
+ *		returns the last element in the list as an int, doesn't return the node.
+ *		if list is empty, -1 is returned.
+ **/
 int pop(list_t *l)
 {
-    int last;
-    node_t *prev = NULL;
-    node_t *cur = l->head;
-
-    while (cur) {
-        if (cur->next == NULL)
-            break;
-        prev = cur;
-        cur = cur->next;
-    }
-
-    last = cur->value;
-    prev->next = NULL;
-
-    free(cur);
-    l->nodes--;
-    return last;
-}
-*/
-int pop(list_t *l)
-{
-    int last;
+    int last = -1;
     node_t *p = l->head;
     node_t *prev = NULL;
-    if (get_size(l) == 1) {
+
+	// empty list
+	if (get_size(l) == 0)
+		return last;
+	else if (get_size(l) == 1) {
         last = p->value;
         l->head = NULL;
     } else {
@@ -116,10 +144,24 @@ int pop(list_t *l)
     return last;
 }
 
-// shift: remove and return first item in list
+
+/* *
+ *	shift:
+ *
+ *	DESCRIPTION:
+ *		remove the first node in a list and return the value.
+ *
+ *	RETURN VALUE:
+ *		returns the value in the first node in the list as an int, doesn't
+ *		return the node. if list is empty, -1 is returned.
+ **/
 int shift(list_t *l)
 {
-    int first;
+    int first = -1;
+	
+	if (get_size(l) == 0)
+		return first;
+
     node_t *tmp = l->head;
     first = tmp->value;
 
@@ -131,7 +173,16 @@ int shift(list_t *l)
 }
 
 
-
+/* *
+ *	remove_node:
+ *
+ *	DESCRIPTION:
+ *		linearly search a list for a node containing target as its value. if
+ *		found, remove that node from the list.
+ *
+ *	RETURN VALUE:
+ *		if node with target was found 1 is returned, otherwise -1. 
+ **/
 int remove_node(list_t *l, int target)
 {
     node_t **p = &l->head;
@@ -150,9 +201,20 @@ int remove_node(list_t *l, int target)
 }
 
 
-// UTILITY FUNCTIONS
 
-// slow linear search algorithm
+/************************************************
+ * UTILITY FUNCTIONS
+ ***********************************************/
+
+/* *
+ *	search:
+ *
+ *	DESCRIPTION:
+ *		do a linear search for a node containing target as a value.
+ *
+ *	RETURN VALUE:
+ *		if value is found, it returns that value, otherwise -1.
+ **/
 int search(list_t *l, int target)
 {
     node_t **p = &l->head;
@@ -164,7 +226,13 @@ int search(list_t *l, int target)
     return -1;
 }
 
-// destroy_list: delete and free entire list
+
+/* *
+ *	destroy_list:
+ *
+ *	DESCRIPTION:
+ *		clean up and free entire list. no return value;
+ **/
 void destroy_list(list_t *l)
 {
     node_t *cur = l->head;
@@ -179,7 +247,12 @@ void destroy_list(list_t *l)
 }
 
 
-// print: print list with position of each element
+/* *
+ *	print_list:
+ *
+ *	DESCRIPTION:
+ *		print out the value in each node and number them. no return value;
+ **/
 void print_list(list_t *l)
 {
     node_t *tmp = l->head;
@@ -192,7 +265,7 @@ void print_list(list_t *l)
 }
 
 
-// get_size: return the number of nodes in list
+// get_size: return the number of nodes in a list
 size_t get_size(list_t *list)
 {
     return list->nodes;
@@ -200,9 +273,15 @@ size_t get_size(list_t *list)
 
 
 
-// SORTING FUNCTIONS
-
-// reverse a linked list
+/* *
+ *	reverse:
+ *
+ *	DESCRIPTION:
+ *		reverse a linked list
+ *
+ *	RETURN VALUE:
+ *		look great in an interview
+ **/
 void reverse(list_t *l)
 {
     node_t *prev = NULL;
