@@ -38,44 +38,134 @@ typedef struct list list_t;
 //void list_init(list_t *list);
 list_t *list_init(void);
 
-// print: print list with position of each element
-void print_list(list_t *list);
+/************************************************
+ * ADDING ELEMENTS TO LIST
+ ***********************************************/
 
-// get_size: return the number of nodes in list
+
+/* *
+ *	push:
+ *
+ *	DESCRIPTION:
+ *		add a node to the front of the list
+ *
+ *	RETURN VALUE:
+ *		if allocation was succesful in new_node(), push will return 1. else, 0.
+ * */
+int push(list_t *l, int value);
+
+
+/* *
+ *	append:
+ *
+ *	DESCRIPTION:
+ *		add a node to the end of the list
+ *
+ *	RETURN VALUE:
+ *		if allocation was succesful in new_node(), append will return 1. else, 0.
+ *
+ *	MORE INFO:
+ *		append requires a check to see if the list is empty. if it is, we push
+ *		it to the beginning of the list. otherwise, we loop to the last node and
+ *		set the next pointer of that node to the new node. 
+ * */
+int append(list_t *l, int value);
+
+
+ /************************************************
+ * REMOVING ELEMENTS FROM LIST
+ ************************************************/
+
+
+/* *
+ *	pop:
+ *
+ *	DESCRIPTION:
+ *		remove the last node in a list and return the value.
+ *
+ *	RETURN VALUE:
+ *		returns the last element in the list as an int, doesn't return the node.
+ *		if list is empty, -1 is returned.
+ **/
+int pop(list_t *l);
+
+
+/* *
+ *	shift:
+ *
+ *	DESCRIPTION:
+ *		remove the first node in a list and return the value.
+ *
+ *	RETURN VALUE:
+ *		returns the value in the first node in the list as an int, doesn't
+ *		return the node. if list is empty, -1 is returned.
+ **/
+int shift(list_t *l);
+
+
+/* *
+ *	remove_node:
+ *
+ *	DESCRIPTION:
+ *		linearly search a list for a node containing target as its value. if
+ *		found, remove that node from the list.
+ *
+ *	RETURN VALUE:
+ *		if node with target was found 1 is returned, otherwise -1. 
+ **/
+int remove_node(list_t *l, int target);
+
+
+/************************************************
+ * UTILITY FUNCTIONS
+ ***********************************************/
+
+
+ /* *
+ *	search:
+ *
+ *	DESCRIPTION:
+ *		do a linear search for a node containing target as a value.
+ *
+ *	RETURN VALUE:
+ *		if value is found, it returns that value, otherwise -1.
+ **/
+int search(list_t *l, int target);
+
+
+/* *
+ *	destroy_list:
+ *
+ *	DESCRIPTION:
+ *		clean up and free entire list. no return value;
+ **/
+void destroy_list(list_t *l);
+
+
+/* *
+ *	print_list:
+ *
+ *	DESCRIPTION:
+ *		print out the value in each node and number them. no return value;
+ **/
+void print_list(list_t *l);
+
+
+// get_size: return the number of nodes in a list
 size_t get_size(list_t *list);
 
 
-// METHODS FOR ADDING ELEMENTS
-
-// push: add node to front of list
-int push(list_t *list, int value);
-
-// append: add node to end of list
-int append(list_t *list, int value);
-
-
-// METHODS FOR REMOVING ELEMENTS
-
-// pop: remove and return last item in list
-int pop(list_t *list);
-
-// shift: remove and return first item in list
-int shift(list_t *list);
-
-// delete: delete a node form the list if it exists
-int remove_node(list_t *list, int target);
-
-// destroy_list: delete and free entire list
-void destroy_list(list_t *list);
-
-// METHODS FOR SORTING
-
-// reverse a list
+/* *
+ *	reverse:
+ *
+ *	DESCRIPTION:
+ *		reverse a linked list
+ *
+ *	RETURN VALUE:
+ *		look great in an interview
+ **/
 void reverse(list_t *l);
 
-int search(list_t *l, int val);
-
-int remove_node(list_t *l, int target);
 
 #ifdef __cplusplus
 }
