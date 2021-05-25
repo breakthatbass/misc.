@@ -32,6 +32,8 @@ char *cpy_until(char *dst, char *s, const char t);
  *
  *      enum config { FIRST = 1, ALL = 2 };
  * */
+enum config { FIRST = 1, ALL = 2 };
+
 char *replace(char *s, const char orig, const char repl, int config);
 
 
