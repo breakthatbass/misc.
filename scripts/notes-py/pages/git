@@ -1,0 +1,10 @@
+git
+
+- switch between branches
+    git switch <branch>
+
+- create a new branch
+    git checkout -b <new-branch>
+
+- make a pull request
+    git push -u origin <branch>
