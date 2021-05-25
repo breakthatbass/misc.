@@ -18,6 +18,12 @@ The [`scripts`](https://github.com/breakthatbass/toolbox/tree/master/scripts) di
 4. [converter](https://github.com/breakthatbass/toolbox/tree/master/libs#converter) - an occasionally useful set of functions to convert between bases.
 5. [minunit]() - my fork of the [minunit](https://github.com/siu/minunit) unit testing program for C programs.
 6. [strlib](https://github.com/breakthatbass/toolbox/tree/master/libs#strlib) - a small string library with some useful functions not contained in `string.h`.
+
+### scripts
+1. [notes-py](https://github.com/breakthatbass/toolbox/tree/master/scripts/notes-py) - my personal ultra-simple `man` pages cli for things I always forget but always need. 
+2. [minunit test runner](https://github.com/breakthatbass/toolbox/blob/master/scripts/run_tests.sh) - put this script in your tests dir and it'll compile each minunit test, run each one, clean up the binaries, and give a total time.
+
+
 ### notes
 1. [matplotlib](https://github.com/breakthatbass/toolbox/blob/master/notes/plot.md) - easily generate graphs with python's matplotlib library. wicked easy.
 2. [bitwise](https://github.com/breakthatbass/toolbox/blob/master/notes/bitwise.md) - still working on bit manipulation. here's what I have for now.
@@ -25,8 +31,6 @@ The [`scripts`](https://github.com/breakthatbass/toolbox/tree/master/scripts) di
 4. [getopt](https://github.com/breakthatbass/toolbox/blob/master/notes/getopt.md) - CLI interface library. i always forget how to set it up. just copy and paste this and you're ready to go.
 5. [threads](https://github.com/breakthatbass/toolbox/blob/master/notes/threads.md) - some quick thread notes to reference.
 
-### scripts
-1. [minunit test runner](https://github.com/breakthatbass/toolbox/blob/master/scripts/run_tests.sh) - put this script in your tests dir and it'll compile each minunit test, run each one, clean up the binaries, and give a total time.
 
 ### To Do
 - fix memory issues in converter lib
