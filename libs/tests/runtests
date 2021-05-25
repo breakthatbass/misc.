@@ -7,7 +7,7 @@ BLUE='\033[1;36m'
 NC='\033[0m' # No Color
 
 FLAGS='-lcurl'
-DEPENDENCIES='../split.c'
+DEPENDENCIES='../split.c ../llist.c ../strlib.c'
 
 for i in *_tests.c
 do
