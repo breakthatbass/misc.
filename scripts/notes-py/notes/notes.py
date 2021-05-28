@@ -16,7 +16,7 @@ def list_notes(debug=True):
         notes_loc = '../pages/'
     else:
         home = str(Path.home())
-        notes_loc = home + '/pages/'
+        notes_loc = home + '/.pages/'
 
     for file in os.walk(notes_loc):
         file_list = file[2]
