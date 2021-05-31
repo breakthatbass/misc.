@@ -15,6 +15,14 @@ static char *new_cat;
 static char *new_move_ptr;
 
 static char *fern1 = "<p>hello how are you</p>";
+static char *fern2 = "<html><body>this is the body of the page</body></html>";
+static char *fern3 = NULL;
+static char *fern4 = "foo bar baz";
+
+static char *new_fern1;
+static char *new_fern2;
+static char *new_fern3;
+static char *new_fern4;
 
 /* *
 * functions to test:
@@ -80,6 +88,18 @@ MU_TEST(test_string_eq)
 
     new_move_ptr = strafter(move_ptr, "needle ");
     mu_assert_string_eq(new_move_ptr, "in the haystack");
+
+    new_fern1 = between_two_ferns(fern1, "<p>", "</p>");
+    mu_assert_string_eq(new_fern1, "hello how are you");
+
+    new_fern2 = between_two_ferns(fern2, "<body>", "</p>");
+    mu_assert_string_eq(new_fern2, NULL);
+
+    new_fern3 = between_two_ferns(fern3, "<body>", "</p>");
+    mu_assert_string_eq(new_fern3, NULL);
+    
+    new_fern4 = between_two_ferns(fern4, NULL, NULL);
+    mu_assert_string_eq(new_fern4, "foo bar baz");
 }
 
 MU_TEST_SUITE(test_suite)
