@@ -14,6 +14,8 @@ static char *new_hello;
 static char *new_cat;
 static char *new_move_ptr;
 
+static char *fern1 = "<p>hello how are you</p>";
+
 /* *
 * functions to test:
 *
@@ -29,6 +31,10 @@ static char *new_move_ptr;
 * strafter(haystack, needle);
 *   -> searches for substring needle in string haystack
 *      if found, returns pointer to position after haystack
+*
+* between_two_ferns(char *start, char *end);
+*   -> searches for start and end and returns the substring
+*      that is between the two substrings.
 * */
 
 void test_setup(void)
