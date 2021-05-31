@@ -108,3 +108,54 @@ char *strafter(const char *haystack, const char *needle)
     }
     return NULL;
 }
+
+
+/* *
+ *	between_two_ferns(char *s, char *start, char *end)
+ *
+ * DESCRIPTION:
+ *		search string s for strat, if it exists, copy all characters until
+ *      end is encounted.
+ *
+ *	RETURN VALUE:
+ *		returns a pointer to the string between start and end.
+ *      if only one of start or end exist, or neither exist, return s.
+ *      user must free.
+ *
+ * */
+#include <assert.h>
+char *between_two_ferns(char *s, char *start, char *end)
+{
+    char *tmp, *end_tmp, *fern;
+    size_t start_size, fern_size;
+
+    if (!s) return NULL;
+
+    if (!start || !end) return s;
+
+    if ((tmp = strstr(s, start))) {
+        start_size = strlen(start);
+        tmp += start_size;
+    } else {
+        return NULL;
+    }
+
+    if ((end_tmp = strstr(tmp, end))) {
+        fern_size = end_tmp - tmp;
+    } else {
+        return NULL;
+    }
+
+    fern = malloc(sizeof(char) * fern_size+1);
+    assert(fern);
+
+    size_t i = 0;
+    while (i < fern_size) {
+        *fern++ = *tmp++;
+        i++;
+    }
+    *fern = '\0';
+    fern -= i;
+
+    return fern;
+}
