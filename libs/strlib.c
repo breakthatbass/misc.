@@ -123,7 +123,7 @@ char *strafter(const char *haystack, const char *needle)
  *      user must free.
  *
  * */
-#include <assert.h>
+
 char *between_two_ferns(char *s, char *start, char *end)
 {
     char *tmp, *end_tmp, *fern;
@@ -147,7 +147,10 @@ char *between_two_ferns(char *s, char *start, char *end)
     }
 
     fern = malloc(sizeof(char) * fern_size+1);
-    assert(fern);
+    if (fern == NULL) {
+        fprintf(stderr, "between_two_ferns: malloc failure\n");
+        exit(EXIT_FAILURE);
+    }
 
     size_t i = 0;
     while (i < fern_size) {
