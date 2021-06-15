@@ -221,5 +221,20 @@ long htod(char *hex)
 
 int main()
 {
+	// binary to decimal
+	int x = btod("010101");  // returns 21
+	printf("%d\n", x);
+
+	// decimal to binary
+	char *bin = dtob(x);  // returns "010101"
+	printf("%s\n", bin);
+
+	// binary to hex
+	char *hex = btoh("1011111011101111");  // returns "BEEF"
+	printf("%s\n", hex);
+
+	// hex to decimal
+	int hdec = htod("BEEF");  // returns 48879
+	printf("%d\n", hdec);
     return 0;
 }

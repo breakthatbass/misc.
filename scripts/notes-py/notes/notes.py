@@ -3,20 +3,29 @@ import os
 from termcolor import colored
 from pathlib import Path
 
+DEBUG = False
+
 
 # any of these commands will generate list
 list_options = ['l', '-l', '--list', 'list']
 
-def list_notes(debug=True):
+
+def list_notes(debug=DEBUG, bash=False):
     '''list all note files currently availables in pages directory'''
     print()
     print(colored('available notes:', 'magenta'))
 
     if debug:
-        notes_loc = '../pages/'
+        if bash:
+            notes_loc = '../pages/bash/'
+        else:
+            notes_loc = '../pages/'
     else:
         home = str(Path.home())
-        notes_loc = home + '/.pages/'
+        if bash:
+            notes_loc = home + '/pages/bash/'
+        else:
+            notes_loc = home + '/pages/'
 
     for file in os.walk(notes_loc):
         file_list = file[2]
@@ -29,6 +38,7 @@ def list_notes(debug=True):
 # any of these flags will generate usage
 help_options = ['-u', '-h', '--usage', '--help']
 
+
 def print_usage():
     print()
     print(colored('usage: notes command', 'magenta'))
@@ -39,57 +49,90 @@ def print_usage():
     print()
 
 
-def pages_path(note_file, debug=True):
+def pages_path(note_file, debug=DEBUG):
     '''build path to requested note'''
     if debug:
         return '../pages/' + note_file
     else:
         home = str(Path.home())
-        return home + '/.pages/' + note_file
+        return home + '/pages/' + note_file
 
 
 def print_info(note_path):
-    '''read file and print it'''
-    print()
     with open(note_path, 'r') as fp:
         for line in fp.readlines():
-            # info line
             if line[0] == '-':
                 print(colored(line, 'green'), end='')
-            # title
+            elif line[0] == '#':
+                # comment
+                print(colored(line, 'yellow'), end='')
             elif line[0].isalpha():
-                print(colored(line, 'magenta', attrs=['bold']), end='')
-            # the command
+                title = line.rstrip()
+                print()
+                print(colored(title, 'magenta', attrs=['bold']))
             else:
-                IN_OPT = False
-                for c in line:
-                    if c == '-' or IN_OPT:
-                        IN_OPT = True
-                        print(colored(c, 'blue'), end='')
-                    elif IN_OPT:
-                        IN_OPT = False
-                        print(colored(c, 'red'), end='')
+                words = line.split()
+                print('    ', end='')
+                for word in words:
+                    if word == title:
+                        print(colored(word, 'magenta'), end=' ')
+                    elif word[0] == '-' or word[0] == '$':
+                        print(colored(word, 'blue'), end=' ')
+                    elif word[0] == '#':
+                        # comment
+                        print(colored(word, 'grey'), end='')
+                    elif word == 'tab':
+                        # if the word is tab, it means we want a tab inserted here
+                        print('    ', end='')
                     else:
-                        print(colored(c, 'red'), end='')
-    print('\n')
+                        print(colored(word, 'red'), end=' ')
+                print()
 
+
+
+def bash(bash_arg=None, debug=DEBUG):
+    '''bash notes requires a second argument. manage it'''
+    if debug:
+        bash_path = '../pages/bash/'
+    else:
+        home = str(Path.home())
+        bash_path = home + '/pages/bash/'
+
+    bash_options = next(os.walk(bash_path), (None, None, []))[2]
+    if bash_arg not in bash_options:
+        print(f'{bash_arg}: not found in bash pages')
+        print('available bash pages:')
+        print(f'\t{colored(bash_options, "green")}')
+        sys.exit(1)
+
+    bash_path = bash_path + bash_arg
+    print_info(bash_path)
+    
+                    
 
 def main():
 
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print_usage()
         sys.exit(1)
 
     # put together path/to/note_file
     note_file = sys.argv[1]
-    note_loc = pages_path(note_file, debug=False)
+    note_loc = pages_path(note_file, debug=DEBUG)
 
     if note_file in list_options:
-        list_notes(debug=False)
+        list_notes(debug=DEBUG)
         sys.exit(0)
 
     if note_file in help_options:
         print_usage()
+        sys.exit(0)
+
+    if note_file == 'bash':
+        if len(sys.argv) < 3:
+            bash()
+        else:
+            bash(sys.argv[2])
         sys.exit(0)
 
     if not os.path.isfile(note_loc):
@@ -102,3 +145,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
