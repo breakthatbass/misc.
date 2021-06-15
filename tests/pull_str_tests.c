@@ -12,9 +12,9 @@ static char *c_parsed;
 
 void test_setup(void)
 {
-    a_parsed = pull_str(a, "<p>", "</p>");
-    b_parsed = pull_str(b, "foo'>", "</div>");
-    bc_parsed = pull_str(c, "foo", "bar");
+    a_parsed = between_two_ferns(a, "<p>", "</p>");
+    b_parsed = between_two_ferns(b, "foo'>", "</div>");
+    c_parsed = between_two_ferns(c, "foo", "bar");
 }
 
 void test_teardown(void)
