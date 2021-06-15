@@ -52,4 +52,21 @@ char *replace(char *s, const char orig, const char repl, int config);
 char *strafter(const char *haystack, const char *needle);
 
 
+
+/* *
+ *	between_two_ferns(char *s, char *start, char *end)
+ *
+ * DESCRIPTION:
+ *		search string s for strat, if it exists, copy all characters until
+ *      end is encounted.
+ *
+ *	RETURN VALUE:
+ *		returns a pointer to the string between start and end.
+ *      if only one of start or end exist, or neither exist, return s.
+ *      user must free.
+ *
+ * */
+char *between_two_ferns(char *s, char *start, char *end);
+
+
 #endif
