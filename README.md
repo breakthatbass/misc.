@@ -1,4 +1,4 @@
-# libs docs
+# libs
 A collection of C libraries I've made over time.
 
 ## Run tests:   
@@ -6,7 +6,7 @@ A collection of C libraries I've made over time.
 #
 ### Table of Contents:
 1. [timing.h](https://github.com/breakthatbass/toolbox/tree/master/libs#timingh) - ultra-simple timing library contained in a small header file. Benchmark your code quickly and easily.
-2. [split](https://github.com/breakthatbass/toolbox/tree/master/libs#split) - split a string into an array of strings based on delimiter(s).
+2. [split](https://github.com/breakthatbass/toolbox/tree/master/#split) - split a string into an array of strings based on delimiter(s).
 3. [linked list](https://github.com/breakthatbass/toolbox/tree/master/libs#linked-list) - a simple linked list which acts as a template containing plenty of methods.
 4. [converter](https://github.com/breakthatbass/toolbox/tree/master/libs#converter) - an occasionally useful set of functions to convert between bases.
 5. [minunit]() - my fork of the [minunit](https://github.com/siu/minunit) unit testing program for C programs.
