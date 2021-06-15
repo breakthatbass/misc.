@@ -5,14 +5,14 @@ A collection of C libraries I've made over time.
 'cd tests && ./runtests`
 #
 ### Table of Contents:
-1. [timing.h](https://github.com/breakthatbass/toolbox/tree/master/libs#timingh) - ultra-simple timing library contained in a small header file. Benchmark your code quickly and easily.
+1. [timing.h](https://github.com/breakthatbass/toolbox/tree/master/#timingh) - ultra-simple timing library contained in a small header file. Benchmark your code quickly and easily.
 2. [split](https://github.com/breakthatbass/toolbox/tree/master/#split) - split a string into an array of strings based on delimiter(s).
-3. [linked list](https://github.com/breakthatbass/toolbox/tree/master/libs#linked-list) - a simple linked list which acts as a template containing plenty of methods.
-4. [converter](https://github.com/breakthatbass/toolbox/tree/master/libs#converter) - an occasionally useful set of functions to convert between bases.
+3. [linked list](https://github.com/breakthatbass/toolbox/tree/master/#linked-list) - a simple linked list which acts as a template containing plenty of methods.
+4. [converter](https://github.com/breakthatbass/toolbox/tree/master/#converter) - an occasionally useful set of functions to convert between bases.
 5. [minunit]() - my fork of the [minunit](https://github.com/siu/minunit) unit testing program for C programs.
-6. [strlib](https://github.com/breakthatbass/toolbox/tree/master/libs#strlib) - a small string library with some useful functions not contained in `string.h`.
+6. [strlib](https://github.com/breakthatbass/toolbox/tree/master/#strlib) - a small string library with some useful functions not contained in `string.h`.
 #
-## [split](https://github.com/breakthatbass/toolbox/blob/master/libs/split.c)
+## [split](https://github.com/breakthatbass/toolbox/blob/master/split.c)
 **split a string based on delimiter(s). Similar to the Python `split` method.**  
 `Split` takes a string and turns it into an array of strings.  
 Update: `split` no longer demolishes the original string :)  
@@ -23,8 +23,8 @@ utility functions:
 
 **Installation:**  
 ```
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/split.c > split.c  
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/split.h > split.h
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/split.c > split.c  
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/split.h > split.h
 ```
 **Getting Started:**
 ```C
@@ -51,14 +51,14 @@ free(split_test);  // must be freed when done
 printf("%s\n", test);  // hello, how, are, you, today
 ```
 
-## [strlib](https://github.com/breakthatbass/toolbox/blob/master/libs/strlib.c)
+## [strlib](https://github.com/breakthatbass/toolbox/blob/master/strlib.c)
 a small string library with some useful functions not contained in `string.h`.  
 for more details on these functions, refer to [`strlib.h`](https://github.com/breakthatbass/toolbox/blob/master/libs/strlib.h). 
 
 **Installation**:
 ```
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/strlib.c > strlib.c
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/strlib.h > strlib.h
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/strlib.c > strlib.c
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/strlib.h > strlib.h
 ```
 **Getting Started:**
 ```C
@@ -87,13 +87,13 @@ puts(tmp);  // "sql"
 
 ```
 
-## [linked list](https://github.com/breakthatbass/toolbox/blob/master/libs/llist.c)
-This is a simple library for a singly linked list for integers. I really use it as a template and copy over only functions I need. It has a reverse function too for all your l33tc0de needs. for more details on these functions, refer to [`llist.h`](https://github.com/breakthatbass/toolbox/blob/master/libs/llist.h).
+## [linked list](https://github.com/breakthatbass/toolbox/blob/master/llist.c)
+This is a simple library for a singly linked list for integers. I really use it as a template and copy over only functions I need. It has a reverse function too for all your l33tc0de needs. for more details on these functions, refer to [`llist.h`](https://github.com/breakthatbass/toolbox/blob/master/llist.h).
 
 **Installation**:
 ```
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/llist.c > llist.c
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/llist.h > llist.h
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/llist.c > llist.c
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/llist.h > llist.h
 ```
 **Getting Started:**
 ```C
@@ -141,13 +141,13 @@ destroy_list(list);         // clean up when done
 
 ```
 
-## [timing.h](https://github.com/breakthatbass/toolbox/blob/master/libs/timing.h)
+## [timing.h](https://github.com/breakthatbass/toolbox/blob/master/timing.h)
 `Timing.h` is an ultra-simple timing library for benchmarking code. It doesn't have any options, it just times your code and saves the time as a float in the `timing` struct.  
 
 Just inlcude the `timing.h` header file after copying it over to your project directory and you're good to go. 
 
 **Installation**:  
-`curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/timing.h > timing.h`  
+`curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/timing.h > timing.h`  
 
 **Usage:**
 ```C
@@ -166,13 +166,13 @@ printf("total time: %f\n". t.ttime);    // total time: 6.227586
 
 ```
 
-## [converter](https://github.com/breakthatbass/toolbox/blob/master/libs/converter.c)
+## [converter](https://github.com/breakthatbass/toolbox/blob/master/converter.c)
 The converter library provides functions for converting numbers to different bases. This isn't hugely useful, but it has come in handy a couple of times. The functions that return integers can return integers up to the size of `uint64_t` or `long long`.  
 
 **Installation**:
 ```
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/converter.c > converter.c
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/converter.h > converter.h
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/converter.c > converter.c
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/converter.h > converter.h
 ```
 **Usage:**
 ```C
@@ -189,10 +189,10 @@ char *hex = btoh("1011111011101111");  // returns "BEEF"
 int hdec = htod("BEEF");  // returns 48879
 ```
 
-## [minunit](https://github.com/breakthatbass/toolbox/blob/master/libs/minunit.h)
+## [minunit](https://github.com/breakthatbass/toolbox/blob/master/minunit.h)
 This is my fork of minunit, the C unit testing library. I added colors to more easily see where programs fail and pass. For documentation, refer to the [repo](https://github.com/breakthatbass/minunit).  
 
 **Installation**:
 ```
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/libs/minunit.h > minunit.h
+curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/lminunit.h > minunit.h
 ```
