@@ -34,21 +34,18 @@ char **split(char *s, const char *delim)
     size_t length;
     int i;
 
+	if (s == NULL || strcmp(s, "")== 0) return NULL;
+
     length = strlen(s);
 
 	tmp = malloc(sizeof(char)*length+1);
-	if (tmp == NULL) {
-		fprintf(stderr, "split: could not allocate memory\n");
-		exit(EXIT_FAILURE);
-	}
+	if (tmp == NULL) return NULL;
+
 	strcpy(tmp, s);
 	tmp[length] = '\0';
 
     split_s = calloc(length*2, sizeof(char*));
-    if (split_s == NULL) {
-        fprintf(stderr, "split: could not allocate memory\n");
-        exit(EXIT_FAILURE);
-    }
+    if (split_s == NULL) return NULL;
 
     i = 0;
     token = strtok(tmp, delim);
