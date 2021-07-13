@@ -38,9 +38,6 @@ MU_TEST(test_string_eq)
     mu_assert_string_eq(hello[2], "are");
     mu_assert_string_eq(hello[3], "you");
 
-    mu_assert_string_eq(junk[2], NULL);
-    mu_assert_string_eq(empty[0], NULL);
-
     mu_assert_string_eq(many_delims[0], "this");
     mu_assert_string_eq(many_delims[1], "string");
     mu_assert_string_eq(many_delims[2], "has");
@@ -54,10 +51,15 @@ MU_TEST(test_string_eq)
     mu_assert_string_eq(num_str[4], "five");
 }
 
+MU_TEST(test_check) {
+	mu_check(empty == NULL);
+}
+
 MU_TEST_SUITE(test_suite)
 {
     MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
     MU_RUN_TEST(test_string_eq);
+	MU_RUN_TEST(test_check);
 }
 
 
