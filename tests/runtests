@@ -6,7 +6,7 @@ GREEN='\033[1;32m'
 BLUE='\033[1;36m'
 NC='\033[0m' # No Color
 
-FLAGS='-lcurl'
+FLAGS='-Wall -fsanitize=address -W -pedantic' 
 DEPENDENCIES='../split.c ../llist.c ../strlib.c'
 
 for i in *_tests.c
