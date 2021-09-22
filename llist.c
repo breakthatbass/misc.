@@ -293,16 +293,3 @@ void reverse(list_t *l)
     }
     l->head = prev;
 }
-
-
-int main()
-{
-    list_t *test = list_init();
-    if (test == NULL) {
-        printf("broken\n");
-    }
-
-    free(test);
-
-    return 0;
-}
