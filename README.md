@@ -2,7 +2,7 @@
 A collection of C libraries I've made over time.
 
 ## Run tests:   
-'cd tests && ./runtests`
+`cd tests && ./runtests`
 #
 ### Table of Contents:
 1. [timing.h](https://github.com/breakthatbass/toolbox/tree/master/#timingh) - ultra-simple timing library contained in a small header file. Benchmark your code quickly and easily.

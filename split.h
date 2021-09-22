@@ -30,3 +30,4 @@ int arr_len(char **vec);
 #endif // extern "C"
 
 #endif // __SPLIT_H__
+

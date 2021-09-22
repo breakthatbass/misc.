@@ -8,13 +8,10 @@
 list_t *list_init(void)
 {
     list_t *l = malloc(sizeof(list_t));
-    if (l == NULL) {
-        perror("list_init:");
-        exit(EXIT_FAILURE);
+    if (l) {
+        l->head = NULL;
+        l->nodes = 0;
     }
-    l->head = NULL;
-    l->nodes = 0;
-
     return l;
 }
 
@@ -295,4 +292,17 @@ void reverse(list_t *l)
         cur = next;
     }
     l->head = prev;
+}
+
+
+int main()
+{
+    list_t *test = list_init();
+    if (test == NULL) {
+        printf("broken\n");
+    }
+
+    free(test);
+
+    return 0;
 }
