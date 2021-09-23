@@ -306,6 +306,8 @@ static int cmpfunc (const void * a, const void * b) {
  *		sort a linked list but creating an array to hold all elements
  *      then using qsort on that array then looping through the array
  *      and redefining the value held at each node from the array element.
+ * 
+ *      NOTE: this function does not preserve original list
  **/
 void sort_list(list_t *l)
 {
