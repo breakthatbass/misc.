@@ -21,6 +21,7 @@
 
 static list_t *list_of_10_ele;
 static list_t *list_of_1_ele;
+static list_t *sort_test_list;
 
 // variables for testing pop and shift
 static int pop_val_10;
@@ -38,6 +39,7 @@ void test_setup(void)
 {
     list_of_10_ele = list_init();
     list_of_1_ele = list_init();
+	sort_test_list = list_init();
 
     // load up 20 element list
     push_to_list(list_of_10_ele, MAX_ELE);
@@ -49,6 +51,7 @@ void test_teardown(void)
 {
     destroy_list(list_of_10_ele);
     destroy_list(list_of_1_ele);
+	destroy_list(sort_test_list);
 }
 
 MU_TEST(test_check)
@@ -124,6 +127,26 @@ MU_TEST(test_check)
 	 // then shift, same numbers in front
 	 mu_check(shift(list_of_1_ele) == 1);
 	 mu_check(shift(list_of_10_ele) == 50);
+
+	 /**********************************
+	 * SORT TESTS
+	 **********************************/
+	push(sort_test_list, 5);
+	push(sort_test_list, 7);
+	push(sort_test_list, 3);
+
+	// list is [5, 7, 3]
+	sort_list(sort_test_list);
+	// should now be [3, 5, 7]
+	mu_check(pop(sort_test_list) == 3);
+	mu_check(pop(sort_test_list) == 5);
+	mu_check(pop(sort_test_list) == 7);
+
+	// test on an empty list
+	sort_list(sort_test_list);
+	mu_check(sort_test_list->nodes == 0);
+
+
 }
 
 MU_TEST_SUITE(test_suite)
@@ -136,5 +159,6 @@ MU_TEST_SUITE(test_suite)
 int main() {
 	MU_RUN_SUITE(test_suite);
 	MU_REPORT();
+
 	return MU_EXIT_CODE;
 }
