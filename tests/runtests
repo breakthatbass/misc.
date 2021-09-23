@@ -9,6 +9,10 @@ NC='\033[0m' # No Color
 FLAGS='-Wall -fsanitize=address -W -pedantic' 
 DEPENDENCIES='../split.c ../llist.c ../strlib.c'
 
+# keep track of number of failing tests and test files that fail
+TOTAL_FAILURES=0
+FAILED_TESTS=""
+
 for i in *_tests.c
 do
     echo -e "- building ${BLUE}$i${NC}"
@@ -16,9 +20,33 @@ do
         echo -e "- build ${GREEN}succeeded!${NC}"
         echo "- running file"
         ./"${i%.c}.out"
+
+        EXIT_CODE=$?
+        (( TOTAL_FAILURES += EXIT_CODE ))
+        
+        if [ $EXIT_CODE -gt 0 ]; then
+            FAILED_TESTS+="\n\t${i%.c}"
+        fi
     else
         echo -e "$i build ${RED}failed${NC}..."
     fi
 done
+
+# print out results from all tests
+echo
+echo "------------------------------- TEST RECAP -------------------------------------"
+echo
+
+if [ $TOTAL_FAILURES -gt 0 ]; then
+    echo -e "total failed tests: ${RED}${TOTAL_FAILURES}${NC}\n"
+    echo -e "failed test files: ${BLUE}${FAILED_TESTS}${NC}"
+else
+    echo -e "all tests passed 🎉🎉🎉"
+fi
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo
+
 
 rm *.out
