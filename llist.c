@@ -293,3 +293,53 @@ void reverse(list_t *l)
     }
     l->head = prev;
 }
+
+
+/* for use in the qsort function below */
+static int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+
+/*	sort_list:
+ *
+ *	DESCRIPTION:
+ *		sort a linked list but creating an array to hold all elements
+ *      then using qsort on that array then looping through the array
+ *      and redefining the value held at each node from the array element.
+ **/
+void sort_list(list_t *l)
+{
+    // check if list is empty
+    if (l->nodes == 0) return;
+
+    // create array to hold each element in list
+    int list_size = l->nodes;
+    int *tmp_array = malloc(sizeof(int)*list_size);
+    if (tmp_array == NULL) return;
+
+    // load elements one by one into array
+    node_t *tmp = l->head;
+    int i = 0;
+    while (tmp) {
+        *tmp_array++ = tmp->value;
+        tmp = tmp->next;
+        i++;
+    }
+    tmp_array -= i;
+
+    // qsort it
+    qsort(tmp_array, list_size, sizeof(int), cmpfunc);
+    
+    // go through each element in list and reassign each node from array
+    i = 0;
+    tmp = l->head;
+    while (tmp) {
+        tmp->value = *tmp_array++;
+        tmp = tmp->next;
+        i++;
+    }
+    tmp_array -= i;
+    free(tmp_array);
+}
+
+

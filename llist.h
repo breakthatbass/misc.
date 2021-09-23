@@ -167,6 +167,16 @@ size_t get_size(list_t *list);
 void reverse(list_t *l);
 
 
+/*	sort_list:
+ *
+ *	DESCRIPTION:
+ *		sort a linked list but creating an array to hold all elements
+ *      then using qsort on that array then looping through the array
+ *      and redefining the value held at each node from the array element.
+ **/
+void sort_list(list_t *l);
+
+
 #ifdef __cplusplus
 }
 #endif // extern "C"
