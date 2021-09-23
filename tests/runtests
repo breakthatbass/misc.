@@ -21,9 +21,8 @@ do
         echo "- running file"
         ./"${i%.c}.out"
 
-        EXIT_CODE=$?
-        (( TOTAL_FAILURES += EXIT_CODE ))
-        
+        EXIT_CODE=$?  # we store $? in a var because once we access it, it resets, we need it twice
+        (( TOTAL_FAILURES += EXIT_CODE )) # minunit returns the num of failed tests as the exit code in main
         if [ $EXIT_CODE -gt 0 ]; then
             FAILED_TESTS+="\n\t${i%.c}"
         fi
