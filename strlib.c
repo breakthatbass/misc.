@@ -148,10 +148,7 @@ char *between_two_ferns(char *s, char *start, char *end)
     }
 
     fern = malloc(sizeof(char) * fern_size+1);
-    if (fern == NULL) {
-        fprintf(stderr, "between_two_ferns: malloc failure\n");
-        exit(EXIT_FAILURE);
-    }
+    if (fern == NULL) return NULL;
 
     size_t i = 0;
     while (i < fern_size) {
