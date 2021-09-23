@@ -5,8 +5,8 @@
 
 /* functions to test:
  *
- * pop(list) -> remove last node
- * shift(list) -> remove first node
+ * shift(list) -> remove last node
+ * pop(list) -> remove first node
  *
  * get_size(list) -> get the number of nodes in the list
  *
@@ -66,8 +66,8 @@ MU_TEST(test_check)
 	/**********************************
 	 * POP TESTS
 	 **********************************/
-	pop_val_1 = pop(list_of_1_ele);
-	pop_val_10 = pop(list_of_10_ele);
+	pop_val_1 = shift(list_of_1_ele);
+	pop_val_10 = shift(list_of_10_ele);
 
 	mu_check(pop_val_1 == 15);
 	mu_check(pop_val_10 == 0);
@@ -78,8 +78,8 @@ MU_TEST(test_check)
 	// refill list of one element
 	push(list_of_1_ele, 15);
 
-	shift_val_1 = shift(list_of_1_ele);
-	shift_val_10 = shift(list_of_10_ele);
+	shift_val_1 = pop(list_of_1_ele);
+	shift_val_10 = pop(list_of_10_ele);
 
 	mu_check(shift_val_1 == 15);
 	mu_check(shift_val_10 == 9);
