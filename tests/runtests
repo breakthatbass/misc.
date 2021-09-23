@@ -7,7 +7,7 @@ BLUE='\033[1;36m'
 NC='\033[0m' # No Color
 
 FLAGS='-Wall -fsanitize=address -W -pedantic' 
-DEPENDENCIES='../split.c ../llist.c ../strlib.c'
+DEPENDENCIES=$(ls ../*.c)
 
 # keep track of number of failing tests and test files that fail
 TOTAL_FAILURES=0
