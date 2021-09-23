@@ -60,27 +60,27 @@ char **split(char *s, const char *delim)
 
 
 // print_arr: each string in an array of strings
-void print_arr(char **vec)
+void print_arr(char **arr)
 {
     int len = 0;
-    while (*vec) {
-        printf("%s\n", *vec);
+    while (*arr) {
+        printf("%s\n", *arr);
         len++;
-        vec++;
+        arr++;
     }
-    vec -= len;
+    arr -= len;
 }
 
 
 // arr_len: get length of an array of strings
-int arr_len(char **vec)
+int arr_len(char **arr)
 {
     int l = 0;
-    while(*vec) {
-        vec++;
+    while(*arr) {
+        arr++;
         l++;
     }
-    vec -= l;
+    arr -= l;
     return l;
 }
 
