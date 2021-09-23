@@ -107,7 +107,7 @@ int append(list_t *l, int value)
 
 
 /* *
- *	pop:
+ *	shift:
  *
  *	DESCRIPTION:
  *		remove the last node in a list and return the value.
@@ -116,7 +116,7 @@ int append(list_t *l, int value)
  *		returns the last element in the list as an int, doesn't return the node.
  *		if list is empty, -1 is returned.
  **/
-int pop(list_t *l)
+int shift(list_t *l)
 {
     int last = -1;
     node_t *p = l->head;
@@ -143,7 +143,7 @@ int pop(list_t *l)
 
 
 /* *
- *	shift:
+ *	pop:
  *
  *	DESCRIPTION:
  *		remove the first node in a list and return the value.
@@ -152,7 +152,7 @@ int pop(list_t *l)
  *		returns the value in the first node in the list as an int, doesn't
  *		return the node. if list is empty, -1 is returned.
  **/
-int shift(list_t *l)
+int pop(list_t *l)
 {
     int first = -1;
 	
