@@ -1,24 +1,39 @@
+/******************************************************************************
+*
+*   Author: Taylor Gamache
+*   Email: gamache.taylor@gmail.com
+*
+*   Version: 0.1.2
+*
+*   License: MIT 2020
+*
+*   @name: strlib
+*   @description: a small string lib that has a few functions that `<string.h>`
+*   doesn't provide
+*
+******************************************************************************/
+
 #ifndef STRLIB_H__
 #define STRLIB_H__
 
 
 /* *
- *	cpy_until:
+ * cpy_until:
  *
- * DESCRIPTION:
- *		Copy string s into string dst until char t is encountered. If char t is never
- *		encoutnered, the etirety of string s gets copied.
+ * @info: copy `s` into `dst` until `t` is encountered.
+ * @info: if `t` is never encountered, entirety of `s` gets copied.
  *
- *	RETURN VALUE:
- *		Returns a pointer to the start of string dst. If s is NULL, NULL is
- *		returned.
+ * @returns: pointer to the start of `dst` or `NULL` is `s` is NULL.
  * */
 char *cpy_until(char *dst, char *s, const char t);
 
 
+enum config { FIRST = 1, ALL = 2 };
 /* *
- *	replace:
+ * replace:
  * 
+ * @info: replaces `orig` with `repl` in `s`.
+ * @info:  
  *	DESCRIPTION:
  *		replace char orig with char repl in string s. Config can be FIRST or ALL.
  *		FIRST: replace the first instance of char orig and char repl.
@@ -32,8 +47,6 @@ char *cpy_until(char *dst, char *s, const char t);
  *
  *      enum config { FIRST = 1, ALL = 2 };
  * */
-enum config { FIRST = 1, ALL = 2 };
-
 char *replace(char *s, const char orig, const char repl, int config);
 
 
