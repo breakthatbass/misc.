@@ -1,5 +1,5 @@
 #include "minunit/minunit.h"
-#include "../llist.h"
+#include "../src/llist.h"
 
 #define MAX_ELE 10
 

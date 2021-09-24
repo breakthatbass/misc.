@@ -87,59 +87,7 @@ puts(tmp);  // "sql"
 
 ```
 
-## [linked list](https://github.com/breakthatbass/toolbox/blob/master/llist.c)
-This is a simple library for a singly linked list for integers. I really use it as a template and copy over only functions I need. It has a reverse function too for all your l33tc0de needs. for more details on these functions, refer to [`llist.h`](https://github.com/breakthatbass/toolbox/blob/master/llist.h).
 
-**Installation**:
-```
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/llist.c > llist.c
-curl https://raw.githubusercontent.com/breakthatbass/toolbox/master/llist.h > llist.h
-```
-**Getting Started:**
-```C
-#include "llist.h"
-
-// init list
-list_t *list = list_init();
-
-// methods to add to list
-push(list, 1);             // push a value to the front of list
-append(list, 2);           // add a value to end of list
-
-// let's add a few more elements
-append(list, 3);
-append(list, 4);
-append(list, 5);
-append(list, 6);
-
-// list: [1, 2, 3, 4, 5, 6]
-
-// methods to remove from list
-int x = pop(list);          // return and remove last value in list
-int y = shift(list);        // return and remove first value in list
-
-if (remove_node(list, 3) > -1)
-    printf("node was found and removed\n");
-else
-    printf("node was not found in list");
-
-// now our list is: [2, 4, 5]
-
-// searching a list
-if (search(list, 2) > -1)
-    printf("2 is in the list!!\n");
-
-// list utility functions
-print_list(list);           // prints each value in list and numbers them
-
-int size = get_size(list);  // returns the number of elements in list
-
-// bro, do you even l33tc0de?
-reverse(list);
-
-destroy_list(list);         // clean up when done
-
-```
 
 ## [timing.h](https://github.com/breakthatbass/toolbox/blob/master/timing.h)
 `Timing.h` is an ultra-simple timing library for benchmarking code. It doesn't have any options, it just times your code and saves the time as a float in the `timing` struct.  

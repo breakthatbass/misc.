@@ -1,5 +1,5 @@
 #include "minunit/minunit.h"
-#include "../strlib.h"
+#include "../src/strlib.h"
 
 #include <assert.h>
 #include <stdlib.h>

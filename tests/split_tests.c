@@ -1,5 +1,5 @@
 #include "minunit/minunit.h"
-#include "../split.h"
+#include "../src/split.h"
 #include <stdlib.h>
 
 static char teststr1[] = "hello how are you";
