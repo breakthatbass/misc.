@@ -71,7 +71,7 @@ print_list(stack);
 
 
 // SEARCHING: 
-int search(list_t *l, int int_to_search_for)
+int search(list_t *l, int int_to_search_for);
 
 // returns the number to search for if found
 // else returns -1
