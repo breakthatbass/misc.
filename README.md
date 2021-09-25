@@ -18,3 +18,6 @@ A collection of C libraries I've made and maintained over time.
 **minunit** - my fork of the minunit unit testing library
 - [my fork](https://github.com/breakthatbass/c-libs/blob/master/src/minunit.h) - prints with colors for easier reading
 - [original](https://github.com/siu/minunit)
+
+## run tests
+run `make test` in root directory
