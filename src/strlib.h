@@ -80,7 +80,7 @@ char **split(char *s, const char *delim);
 /* *
  * print_arr:
  *
- * @info: sprint each string in an array of strinsg.
+ * @info: print each string in an array of string.
  * */
 void print_arr(char **arr);
 
