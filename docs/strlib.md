@@ -48,9 +48,15 @@ char **split(char *s, const char *delim);
 <br>
 
 ```C
+void print_arr(char **arr);
+```
+- prints out each string in an array of strings
+
+<br>
+
+```C
 int arr_len(char **arr);
 ```
-- sprint each string in an array of strinsg.
 - **returns** the number of strings in an array of strings.
 
 <br>
