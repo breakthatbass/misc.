@@ -38,3 +38,20 @@ char *between_two_ferns(char *s, char *start, char *end);
 
 <br>
 
+```C
+char **split(char *s, const char *delim);
+```
+- split a string into an array of strings based on delim (delimiters).
+- preserves original string.
+- **returns** pointer to an array of char pointers.
+
+<br>
+
+```C
+int arr_len(char **arr);
+```
+- sprint each string in an array of strinsg.
+- **returns** the number of strings in an array of strings.
+
+<br>
+

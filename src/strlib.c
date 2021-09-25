@@ -1,3 +1,18 @@
+/******************************************************************************
+*
+*   Author: Taylor Gamache
+*   Email: gamache.taylor@gmail.com
+*
+*   Version: 0.1.2
+*
+*   License: MIT 2020
+*
+*   @name: strlib
+*   @description: a small string lib that has a few functions that `<string.h>` doesn't provide
+*
+******************************************************************************/
+
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
