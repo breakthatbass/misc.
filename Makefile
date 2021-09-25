@@ -15,5 +15,8 @@ $(OUTDIR)/%.o: src/%.c | $(OUTDIR)
 $(OUTDIR):
 	mkdir -p $(OUTDIR)
 
+test:
+	cd tests && ./runtests
+
 clean:
 	rm -rf $(OUTDIR)
