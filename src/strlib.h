@@ -8,8 +8,7 @@
 *   License: MIT 2020
 *
 *   @name: strlib
-*   @description: a small string lib that has a few functions that `<string.h>`
-*   doesn't provide
+*   @description: a small string lib that has a few functions that `<string.h>` doesn't provide
 *
 ******************************************************************************/
 
@@ -33,50 +32,33 @@ enum config { FIRST = 1, ALL = 2 };
  * replace:
  * 
  * @info: replaces `orig` with `repl` in `s`.
- * @info:  
- *	DESCRIPTION:
- *		replace char orig with char repl in string s. Config can be FIRST or ALL.
- *		FIRST: replace the first instance of char orig and char repl.
- *		ALL: replace all instances of char orig with char repl.
+ * @info: config can be `FIRST` or `ALL`.
+ * @info: `FIRST`: replace the first instance of `orig` with `repl`.
+ * @info: `ALL`: replace all instances of `orig` with `repl`.
  *
- *	RETURN VALUE:
- *		Returns a pointer to string s. If something other than FIRST or ALL is
- *		supplied for config, it simply returns a pointer to s without doing
- *		anything. Also, if char orig is not found in s, it also returns a
- *		pointer to s.
- *
- *      enum config { FIRST = 1, ALL = 2 };
+ * @returns: a potiner to `s`. if not `FIRST` or `ALL` is supplied of config, or `orig` is not in `s`, pointer to `s` is returned
  * */
 char *replace(char *s, const char orig, const char repl, int config);
 
 
 /* *
- *	strafter:
+ * strafter:
  *
- * DESCRIPTION:
- *		strafter searches string haystack for substring needle. if found, it returns
- *		a pointer to the string haystack after needle. similar to strstr.
+ * @info: search `haystack` for `needle`.
  *
- *	RETURN VALUE:
- *		returns a pointer to location in haystack after substring needle. If
- *		needle is not in haystack, it returns NULL.
- *
+ * @returns: pointer to location in `haystack` after `needle`. If not found, NULL.
  * */
 char *strafter(const char *haystack, const char *needle);
 
 
 
 /* *
- *	between_two_ferns(char *s, char *start, char *end)
+ * between_two_ferns:
  *
- * DESCRIPTION:
- *		search string s for strat, if it exists, copy all characters until
- *      end is encounted.
- *
- *	RETURN VALUE:
- *		returns a pointer to the string between start and end.
- *      if only one of start or end exist, or neither exist, return s.
- *      user must free.
+ * @info: search `s` for `start`, if found, copy all chars until `end`.
+ * @info: **note**: user must free after.
+ * 
+ * @returns: pointer to substring between `start` and `end`. if problem, return `s`.
  *
  * */
 char *between_two_ferns(char *s, char *start, char *end);
