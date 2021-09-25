@@ -1,20 +1,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #include "strlib.h"
 
 
 /* *
- *	cpy_until:
+ * cpy_until:
  *
- * DESCRIPTION:
- *		Copy string s into string dst until char t is encountered. If char t is never
- *		encoutnered, the etirety of string s gets copied.
+ * @info: copy `s` into `dst` until `t` is encountered.
+ * @info: if `t` is never encountered, entirety of `s` gets copied.
  *
- *	RETURN VALUE:
- *		Returns a pointer to the start of string dst. If s is NULL, NULL is
- *		returned.
+ * @returns: pointer to the start of `dst` or `NULL` is `s` is NULL.
  * */
 char *cpy_until(char *dst, char *s, const char t)
 {
@@ -35,20 +33,14 @@ char *cpy_until(char *dst, char *s, const char t)
 
 
 /* *
- *	replace:
+ * replace:
  * 
- *	DESCRIPTION:
- *		replace char orig with char repl in string s. Config can be FIRST or ALL.
- *		FIRST: replace the first instance of char orig and char repl.
- *		ALL: replace all instances of char orig with char repl.
+ * @info: replaces `orig` with `repl` in `s`.
+ * @info: config can be `FIRST` or `ALL`.
+ * @info: `FIRST`: replace the first instance of `orig` with `repl`.
+ * @info: `ALL`: replace all instances of `orig` with `repl`.
  *
- *	RETURN VALUE:
- *		Returns a pointer to string s. If something other than FIRST or ALL is
- *		supplied for config, it simply returns a pointer to s without doing
- *		anything. Also, if char orig is not found in s, it also returns a
- *		pointer to s.
- *
- *      enum config { FIRST = 1, ALL = 2 };
+ * @returns: a potiner to `s`. if not `FIRST` or `ALL` is supplied of config, or `orig` is not in `s`, pointer to `s` is returned
  * */
 char *replace(char *s, const char orig, const char repl, int config)
 {
@@ -82,16 +74,11 @@ char *replace(char *s, const char orig, const char repl, int config)
 
 
 /* *
- *	strafter:
+ * strafter:
  *
- * DESCRIPTION:
- *		strafter searches string haystack for substring needle. if found, it returns
- *		a pointer to the string haystack after needle. similar to strstr.
+ * @info: search `haystack` for `needle`.
  *
- *	RETURN VALUE:
- *		returns a pointer to location in haystack after substring needle. If
- *		needle is not in haystack, it returns NULL.
- *
+ * @returns: pointer to location in `haystack` after `needle`. If not found, NULL.
  * */
 char *strafter(const char *haystack, const char *needle)
 {
@@ -112,19 +99,14 @@ char *strafter(const char *haystack, const char *needle)
 
 
 /* *
- *	between_two_ferns(char *s, char *start, char *end)
+ * between_two_ferns:
  *
- * DESCRIPTION:
- *		search string s for strat, if it exists, copy all characters until
- *      end is encounted.
- *
- *	RETURN VALUE:
- *		returns a pointer to the string between start and end.
- *      if only one of start or end exist, or neither exist, return s.
- *      user must free.
+ * @info: search `s` for `start`, if found, copy all chars until `end`.
+ * @info: **note**: user must free after.
+ * 
+ * @returns: pointer to substring between `start` and `end`. if problem, return `s`.
  *
  * */
-
 char *between_two_ferns(char *s, char *start, char *end)
 {
     char *tmp, *end_tmp, *fern;
@@ -159,4 +141,102 @@ char *between_two_ferns(char *s, char *start, char *end)
     fern -= i;
 
     return fern;
+}
+
+
+/**********  split  ***********/
+
+// trim white space at beginning and end of string
+static char *trim(char *str)
+{
+  char *end;
+  
+  // Trim leading space
+  while(isspace((unsigned char)*str)) str++;
+
+  if(*str == 0)  // All spaces?
+    return str;
+
+  // Trim trailing space
+  end = str + strlen(str) - 1;
+  if (*end != ' ') return str;
+  while(end > str && isspace((unsigned char)*end)) end--;
+
+  // Write new null terminator character
+  end[1] = '\0';
+
+  return str;
+}
+
+/* *
+ * split:
+ *
+ * @info: split a string into an array of strings based on delim (delimiters).
+ * @info: preserves original string.
+ *
+ * @returns: pointer to an array of char pointers.
+ * */
+char **split(char *s, const char *delim)
+{
+    char **split_s;
+    char *token, *tmp;
+    size_t length;
+    int i;
+
+	if (s == NULL || strcmp(s, "")== 0) return NULL;
+
+    length = strlen(s);
+
+	tmp = malloc(sizeof(char)*length+1);
+	if (tmp == NULL) return NULL;
+
+	strcpy(tmp, s);
+	tmp[length] = '\0';
+
+    split_s = calloc(length*2, sizeof(char*));
+    if (split_s == NULL) return NULL;
+
+    i = 0;
+    token = strtok(tmp, delim);
+    while (token != NULL) {
+		split_s[i] = trim(token);
+        token = strtok(NULL, delim);
+        i++;
+    }
+	if (i > 0)split_s[i] = NULL;
+    return split_s;
+}
+
+
+/* *
+ * print_arr:
+ *
+ * @info: sprint each string in an array of strinsg.
+ * */
+void print_arr(char **arr)
+{
+    int len = 0;
+    while (*arr) {
+        printf("%s\n", *arr);
+        len++;
+        arr++;
+    }
+    arr -= len;
+}
+
+
+/* *
+ * arr_len:
+ *
+ * @returns: the number of strings in an array of strings.
+ * */
+int arr_len(char **arr)
+{
+    int l = 0;
+    while(*arr) {
+        arr++;
+        l++;
+    }
+    arr -= l;
+    return l;
 }

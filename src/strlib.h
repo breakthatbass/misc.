@@ -64,4 +64,34 @@ char *strafter(const char *haystack, const char *needle);
 char *between_two_ferns(char *s, char *start, char *end);
 
 
+/**********  split  ***********/
+
+/* *
+ * split:
+ *
+ * @info: split a string into an array of strings based on delim (delimiters).
+ * @info: preserves original string.
+ *
+ * @returns: pointer to an array of char pointers.
+ * */
+char **split(char *s, const char *delim);
+
+
+/* *
+ * print_arr:
+ *
+ * @info: sprint each string in an array of strinsg.
+ * */
+void print_arr(char **arr);
+
+
+
+/* *
+ * arr_len:
+ *
+ * @returns: the number of strings in an array of strings.
+ * */
+int arr_len(char **arr);
+
+
 #endif
