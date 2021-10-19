@@ -1,10 +1,29 @@
+/***************************************************************************
+ *
+ * Author: Taylor Gamache
+ * Email: gamache.taylor@gmail.com
+ * url: https://github.com/breakthatbass/c-libs
+ *
+ * Version: 1.0.2
+ * License: MIT 2020
+ *
+ * @name: Int Linked List
+ * @description: a simple singly list list of ints for stacks & queues.
+ *
+ *************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "llist.h"
 
 
-// list_init: initiate a linked list
+/* *
+ * list_init
+ *
+ * @desc: creates an empty linked list.
+ * @return: a potiner to the head of list (type `list_t`).
+ * */
 list_t *list_init(void)
 {
     list_t *l = malloc(sizeof(list_t));
@@ -16,18 +35,7 @@ list_t *list_init(void)
 }
 
 
-/* *
- *	new_node:
- *	
- *	DESCRIPTION:
- *		allocate space for a new node in a list. if allocation is successful,
- *		add the value to the node and connect it to list.
- *
- *	RETURN VALUE:
- *		returns the node even if allocation is unsuccessful. error checking is
- *		done outside of the function.
- *
- * */
+// new_node: allocate space for a new node and return that node
 static node_t *new_node(int value, node_t *next)
 {
     node_t *node = malloc(sizeof(node_t));
@@ -44,15 +52,14 @@ static node_t *new_node(int value, node_t *next)
  * ADDING ELEMENTS TO LIST
  ***********************************************/
 
-
 /* *
- *	push:
+ * push
  *
- *	DESCRIPTION:
- *		add a node to the front of the list
+ * @desc: add a node to the front of the list.
  *
- *	RETURN VALUE:
- *		if allocation was succesful in new_node(), push will return 1. else, 0.
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * @param: `value` - the int value to push to the list.
+ * @return: `1` if successful, `0` if allocation for node failed.
  * */
 int push(list_t *l, int value)
 {
@@ -68,20 +75,14 @@ int push(list_t *l, int value)
 
 
 /* *
- *	append:
+ * append
  *
- *	DESCRIPTION:
- *		add a node to the end of the list
+ * @desc: add a node to the end of the list.
  *
- *	RETURN VALUE:
- *		if allocation was succesful in new_node(), append will return 1. else, 0.
- *
- *	MORE INFO:
- *		append requires a check to see if the list is empty. if it is, we push
- *		it to the beginning of the list. otherwise, we loop to the last node and
- *		set the next pointer of that node to the new node. 
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * @param: `value` - the int value to append to the list.
+ * @return: `1` if successful, `0` if allocation for node failed.
  * */
-
 int append(list_t *l, int value)
 {
     node_t *node = new_node(value, l->head);
@@ -107,15 +108,13 @@ int append(list_t *l, int value)
 
 
 /* *
- *	shift:
+ * shift
  *
- *	DESCRIPTION:
- *		remove the last node in a list and return the value.
+ * @desc: remove the last node from a list.
  *
- *	RETURN VALUE:
- *		returns the last element in the list as an int, doesn't return the node.
- *		if list is empty, -1 is returned.
- **/
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * @return: value stored in the last node.
+ * */
 int shift(list_t *l)
 {
     int last = -1;
@@ -143,15 +142,13 @@ int shift(list_t *l)
 
 
 /* *
- *	pop:
+ * pop
  *
- *	DESCRIPTION:
- *		remove the first node in a list and return the value.
+ * @desc: remove first node in a list.
  *
- *	RETURN VALUE:
- *		returns the value in the first node in the list as an int, doesn't
- *		return the node. if list is empty, -1 is returned.
- **/
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * @return: vlaue stored in the first node.
+ * */
 int pop(list_t *l)
 {
     int first = -1;
@@ -171,15 +168,14 @@ int pop(list_t *l)
 
 
 /* *
- *	remove_node:
+ * remove_node
  *
- *	DESCRIPTION:
- *		linearly search a list for a node containing target as its value. if
- *		found, remove that node from the list.
+ * @desc: remove a node with a certain value from a list.
  *
- *	RETURN VALUE:
- *		if node with target was found 1 is returned, otherwise -1. 
- **/
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * @param: `target` - the `int` to delete.
+ * @return: `1` if `target` is found in list, else `-1`.
+ * */
 int remove_node(list_t *l, int target)
 {
     node_t **p = &l->head;
@@ -204,14 +200,14 @@ int remove_node(list_t *l, int target)
  ***********************************************/
 
 /* *
- *	search:
+ * search
  *
- *	DESCRIPTION:
- *		do a linear search for a node containing target as a value.
+ * @desc: do a linear search in a list.
  *
- *	RETURN VALUE:
- *		if value is found, it returns that value, otherwise -1.
- **/
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * @param: `target` - value to be search for.
+ * @return: `target` if `target` is found in list, else `-1`.
+ * */
 int search(list_t *l, int target)
 {
     node_t **p = &l->head;
@@ -225,10 +221,10 @@ int search(list_t *l, int target)
 
 
 /* *
- *	destroy_list:
+ * destroy_list
  *
- *	DESCRIPTION:
- *		clean up and free entire list. no return value;
+ * @desc: free all nodes in a list and the `list_t` head pointer.
+ * @param: `*l` - a pointer to a list of type `list_t`.
  **/
 void destroy_list(list_t *l)
 {
@@ -245,10 +241,10 @@ void destroy_list(list_t *l)
 
 
 /* *
- *	print_list:
+ * print_list
  *
- *	DESCRIPTION:
- *		print out the value in each node and number them. no return value;
+ * @desc: print the value at each node in a list and number them.
+ * @param: `*l` - a pointer to a list of type `list_t`.
  **/
 void print_list(list_t *l)
 {
@@ -262,23 +258,25 @@ void print_list(list_t *l)
 }
 
 
-// get_size: return the number of nodes in a list
+/* *
+ * get_size
+ *
+ * @desc: get the number of nodes in a list.
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * @return: the number of nodes in `list`.
+ * */
 size_t get_size(list_t *list)
 {
     return list->nodes;
 }
 
 
-
 /* *
- *	reverse:
+ * reverse
  *
- *	DESCRIPTION:
- *		reverse a linked list
- *
- *	RETURN VALUE:
- *		look great in an interview
- **/
+ * @desc: reverse a list & look great in an interview.
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * */
 void reverse(list_t *l)
 {
     node_t *prev = NULL;
@@ -295,20 +293,17 @@ void reverse(list_t *l)
 }
 
 
-/* for use in the qsort function below */
+/* for use in the sort function below */
 static int cmpfunc (const void * a, const void * b) {
    return ( *(int*)a - *(int*)b );
 }
 
-/*	sort_list:
+/* *
+ * sort_list
  *
- *	DESCRIPTION:
- *		sort a linked list but creating an array to hold all elements
- *      then using qsort on that array then looping through the array
- *      and redefining the value held at each node from the array element.
- * 
- *      NOTE: this function does not preserve original list
- **/
+ * @desc: sort a list based on the values from least to greatest.
+ * @param: `*l` - a pointer to a list of type `list_t`.
+ * */
 void sort_list(list_t *l)
 {
     // check if list is empty
