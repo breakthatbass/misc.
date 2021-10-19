@@ -1,100 +1,105 @@
-# [linked list](https://github.com/breakthatbass/c-libs/blob/master/src/llist.c) documentation
-a simple singly linked list lib for integers. 
-
-#
-## creating a list:
-<br>
-
-```C
-#include "llist.h"
-
-list_t *list_init(void);
-```
-- allocate memory and create an empty list.
-- **returns** a pointer to an empty list or, if `malloc` fails, `NULL`.
-#
-## adding to list:
-
-```C
-int push(list_t *l, int int_to_push)
-```
-- adds `int_to_push` to front of list.
-- **returns** 0 if `malloc` fails, else 1.
-
-<br>
-
-```C
-int append(list_t *l, int int_to_append)
-```
-- adds `int_to_append` to end of list.
-- **returns** 0 if `malloc` fails, else 1.
-#
-## removing from list:
-
-```C
-int pop(list_t *l)
-```
-- removes first item from list.
-- **returns** value of first item or, if list is empty, -1.
-
-<br>
-
-```C
-int shift(list_t *l)
-```
-- removes last item from list.
-- **returns** value of last item or, if list is empty, -1.
-
-<br>
-
-```C
-int remove_node(list_t *l, int int_to_remove);
-```
-- searches a list for `int_to_remove` and deletes node if found.
-- **returns** value of node if `int_to_remove` is found, else returns -1.
-
-#
-## misc. list functions:
-
-```C
-int get_size(list_t *l)
-```
-- **returns** the number of elements in a list.
-
-<br>
-
-```C
-void print_list(list_t *l)
-```
-- prints out the value of each node in list.
-
-<br>
+# Int Linked List documentation
+a simple singly list of ints for stacks & queues.
  
+#
 ```C
-int search(list_t *l, int int_to_search_for)
+list_t *list_init(void) 
 ```
-- searches a list for `int_to_search_for`.
-- **returns** value of node if int_to_search_for is in list, else returns -1.
+creates an empty linked list.
+- **returns** a potiner to the head of list (type `list_t`).
 
 <br>
 
 ```C
-void sort_list(list_t *l)
+int push(list_t *l, int value) 
 ```
-- sorts a list of ints from least to greatest.
-- **note:** this function changes original list.
+add a node to the front of the list.
+- `*l` - a pointer to a list of type `list_t`.
+- `value` - the int value to push to the list.
+- **returns** `1` if successful, `0` if allocation for node failed.
 
 <br>
 
 ```C
-void reverse(list_t *l)
+int append(list_t *l, int value) 
 ```
-- reverse a list and look great in an interview.
-- **note:** this function changes original list.
+add a node to the end of the list.
+- `*l` - a pointer to a list of type `list_t`.
+- `value` - the int value to append to the list.
+- **returns** `1` if successful, `0` if allocation for node failed.
 
 <br>
 
 ```C
-void destroy_list(list_t *l);
+int shift(list_t *l) 
 ```
-- delete and free list and all nodes
+remove the last node from a list.
+- `*l` - a pointer to a list of type `list_t`.
+- **returns** value stored in the last node.
+
+<br>
+
+```C
+int pop(list_t *l) 
+```
+remove first node in a list.
+- `*l` - a pointer to a list of type `list_t`.
+- **returns** vlaue stored in the first node.
+
+<br>
+
+```C
+int remove_node(list_t *l, int target) 
+```
+remove a node with a certain value from a list.
+- `*l` - a pointer to a list of type `list_t`.
+- `target` - the `int` to delete.
+- **returns** `1` if `target` is found in list, else `-1`.
+
+<br>
+
+```C
+int search(list_t *l, int target) 
+```
+do a linear search in a list.
+- `*l` - a pointer to a list of type `list_t`.
+- `target` - value to be search for.
+- **returns** `target` if `target` is found in list, else `-1`.
+
+<br>
+
+```C
+void print_list(list_t *l) 
+```
+free all nodes in a list and the `list_t` head pointer.
+- `*l` - a pointer to a list of type `list_t`.
+print the value at each node in a list and number them.
+- `*l` - a pointer to a list of type `list_t`.
+
+<br>
+
+```C
+size_t get_size(list_t *list) 
+```
+get the number of nodes in a list.
+- `*l` - a pointer to a list of type `list_t`.
+- **returns** the number of nodes in `list`.
+
+<br>
+
+```C
+void reverse(list_t *l) 
+```
+reverse a list & look great in an interview.
+- `*l` - a pointer to a list of type `list_t`.
+
+<br>
+
+```C
+void sort_list(list_t *l) 
+```
+sort a list based on the values from least to greatest.
+- `*l` - a pointer to a list of type `list_t`.
+
+<br>
+
