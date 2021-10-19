@@ -8,7 +8,7 @@
  * License: MIT 2020
  *
  * @name: Int Linked List
- * @description: a simple singly list list of ints for stacks & queues.
+ * @description: a simple singly list of ints for stacks & queues.
  *
  *************************************************************************/
 
@@ -245,7 +245,7 @@ void destroy_list(list_t *l)
  *
  * @desc: print the value at each node in a list and number them.
  * @param: `*l` - a pointer to a list of type `list_t`.
- **/
+ * */
 void print_list(list_t *l)
 {
     node_t *tmp = l->head;
