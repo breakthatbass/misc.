@@ -1,4 +1,4 @@
-/******************************************************************************
+/**************************************************************************
 *
 *   Author: Taylor Gamache
 *   Email: gamache.taylor@gmail.com
@@ -10,8 +10,7 @@
 *   @name: strlib
 *   @description: a small string lib that has a few functions that `<string.h>` doesn't provide
 *
-******************************************************************************/
-
+***************************************************************************/
 
 #include <stdlib.h>
 #include <string.h>
@@ -24,10 +23,13 @@
 /* *
  * cpy_until:
  *
- * @info: copy `s` into `dst` until `t` is encountered.
- * @info: if `t` is never encountered, entirety of `s` gets copied.
+ * @desc: copy `s` into `dst` until `t` is encounted. if no `t`, entirety of `s` gets copied.
  *
- * @returns: pointer to the start of `dst` or `NULL` is `s` is NULL.
+ * @param: `dst` - string to copy `s` into.
+ * @param: `*s` - string to be copied.
+ * @param: `t` - `char` to copy until.
+ *
+ * @return: pointer to the start of `dst` or `NULL` is `s` is NULL.
  * */
 char *cpy_until(char *dst, char *s, const char t)
 {
