@@ -94,4 +94,10 @@ void print_arr(char **arr);
 int arr_len(char **arr);
 
 
+/**
+ * lstrip
+ * */
+char *rstrip(char *s, char *pattern);
+
+
 #endif

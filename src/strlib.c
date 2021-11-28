@@ -91,9 +91,9 @@ char *replace(char *s, const char orig, const char repl, int config)
 
 
 /* *
- * strafter:
+ * lstrip:
  *
- * @info: search `haystack` for `needle`.
+ * @info: strip pattern from start of string.
  *
  * @returns: pointer to location in `haystack` after `needle`. If not found, NULL.
  * */
@@ -113,6 +113,24 @@ char *strafter(const char *haystack, const char *needle)
     }
     return NULL;
 }
+
+
+char *rstrip(char *s, char *pattern)
+{
+	char *tmp;
+	size_t len;
+	long end;
+
+	if (s == NULL || pattern == NULL)
+		return NULL;
+
+	if ((tmp = strstr(s, pattern))) {
+		end = (tmp - s) * sizeof(*s);
+		s[end] = '\0';
+	}
+	return s;
+}
+
 
 
 /* *
@@ -256,4 +274,19 @@ int arr_len(char **arr)
     }
     arr -= l;
     return l;
+}
+
+
+/**
+ * lstrip
+ *
+ * @desc: strip pattern from start of string
+ *
+ * @param: `s` - Original string.
+ * @param: `pattern` - pattern to strip from `s`.
+ *
+ * */
+char *lstrip(char *s, char *pattern)
+{
+	return strafter(s, pattern);
 }
