@@ -17,6 +17,7 @@ for i in *_tests.c
 do
     echo -e "- building ${BLUE}$i${NC}"
     if gcc $i $DEPENDENCIES $FLAGS -o "${i%.c}.out"; then
+		echo $FLAGS
         echo -e "- build ${GREEN}succeeded!${NC}"
         echo "- running file"
         ./"${i%.c}.out"

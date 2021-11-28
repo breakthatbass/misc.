@@ -24,6 +24,8 @@ static char *new_fern2;
 static char *new_fern3;
 static char *new_fern4;
 
+static char l1[100];
+
 /* *
 * functions to test:
 *
@@ -56,6 +58,14 @@ void test_setup(void)
     strcpy(hello, "hello, how are you");
     strcpy(cat, "the cat went to town");
     strcpy(move_ptr, "the needle in the haystack");
+
+	//char *s = malloc(sizeof(char) * 20);
+	char s[20];
+	strcpy(s, "the quick brown fox");
+
+	strcpy(l1, rstrip(s, "fox"));
+
+
 }
 
 void test_teardown(void)
@@ -100,6 +110,8 @@ MU_TEST(test_string_eq)
     
     new_fern4 = between_two_ferns(fern4, NULL, NULL);
     mu_assert_string_eq(new_fern4, "foo bar baz");
+
+	mu_assert_string_eq(l1, "the quick brown ");
 }
 
 MU_TEST_SUITE(test_suite)
